@@ -15,19 +15,22 @@ class CateProductController extends Controller
     public function index()
     {
     	$cate_product = Cate_product::paginate(5);
-    	// dd($cate_product);
+
     	return view('admin/cate_product/index', compact('cate_product'));
     }
 
     public function create()
     {
-    	return view('admin/cate_product/create');
+    	$data=Cate_product::select('id','name','parent_id')->get()->toArray();
+
+    	return view('admin/cate_product/create', compact('data'));
     }
 
     public function postCreate(Cate_productRequest $req)
     {
     	$cate_product = new Cate_product;
     	$cate_product->name = $req['name'];
+    	$cate_product->parent_id = $req->parent_id;
     	$cate_product->slug = str_slug($cate_product->name);
     	$cate_product->description = $req['description'];
     	$cate_product->status = (is_null($req['status']) ? '0' : '1');
@@ -43,13 +46,16 @@ class CateProductController extends Controller
             $cate_product->image = ('/photos/avatar5.png');
         }
     	$cate_product->save();
+
     	return redirect()->route('admin.cate_product.home')->with('success','Thêm thành công');
     }
 
     public function update($slug)
     {
+    	$data=Cate_product::select('id','name','parent_id')->get()->toArray();
     	$cate_product = Cate_product::where('slug', $slug)->first();
-    	return view('admin.cate_product.edit', compact('cate_product'));
+
+    	return view('admin.cate_product.edit', compact('cate_product', 'data'));
     }
 
     public function postUpdate($slug, UpdateCate_productRequest $req)
@@ -57,6 +63,7 @@ class CateProductController extends Controller
     	// $cate_product = Cate_product::findOrFail($slug);
     	$cate_product = Cate_product::where('slug', $slug)->first();
     	$cate_product->name = $req['name'];
+    	$cate_product->parent_id = $req->parent_id;
     	$cate_product->slug = str_slug($cate_product->name);
     	$cate_product->description = $req['description'];
     	$cate_product->status = (is_null($req['status']) ? '0' : '1');
@@ -72,12 +79,14 @@ class CateProductController extends Controller
             $cate_product->image = ('/photos/avatar5.png');
         }
     	$cate_product->save();
+
     	return redirect()->route('admin.cate_product.home')->with('success','Sửa thành công');
     }
 
     public function destroy(Request $req)
     {
-    	Cate_product::where('slug', $req['slug'])->first()->delete();
+    	Cate_product::where('id', $req['id'])->first()->delete();
+    	Cate_product::where('parent_id', $req['id'])->delete();
 
     	return redirect()->back()->with('success', 'Xóa thành công');
     }

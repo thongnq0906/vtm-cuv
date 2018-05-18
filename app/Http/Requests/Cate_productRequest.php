@@ -24,7 +24,7 @@ class Cate_productRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:cate_products,name',
         ];
     }
 }

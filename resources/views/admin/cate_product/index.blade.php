@@ -10,7 +10,10 @@
 		                <h1>Danh mục sản phẩm</h1>
 		                <div class="options">
 		                    <div class="btn-toolbar">
-		                        <a href="{{ route('admin.cate_product.create') }}" class="btn btn-default"><i class=" fa fa-fw fa-plus"></i>Thêm mới</a>
+		                        <a href="{{ route('admin.cate_product.create') }}" class="btn btn-default">
+		                        	<i class=" fa fa-fw fa-plus"></i>
+		                        	Thêm mới
+		                        </a>
 		                    </div>
 		                </div>
 		            </div>
@@ -50,14 +53,21 @@
 		                                        <tr>
 		                                            <td>{{ $key + 1 }}</td>
 		                                            <td>{{ $c->id }}</td>
-		                                            <td><img src="{{ asset($c->image) }}" style="height: 60px; width: 60px;"></td>
+		                                            <td>
+		                                            	<img src="{{ asset($c->image) }}"
+                                                        style="height: 60px; width: 60px;">
+		                                            </td>
 		                                            <td>{{ $c->name }}</td>
 		                                            <td>{{ $c->description }}</td>
 		                                            <td>
 		                                            	@if($c->status == 1)
-															<button type="button" class="btn btn-danger .btn-sm">Hiện</button>
+															<button type="button" class="btn btn-danger .btn-sm">
+																Hiện
+															</button>
 		                                            	@else
-															<button type="button" class="btn btn .btn-sm">&nbsp;&nbsp;Ẩn &nbsp;</button>
+															<button type="button" class="btn btn .btn-sm">
+																&nbsp;&nbsp;Ẩn &nbsp;
+															</button>
 		                                            	@endif
 		                                            </td>
 		                                            <td>{{ $c->position }}</td>
@@ -66,8 +76,9 @@
 		                                                <a href="{{ route('admin.cate_product.update', $c->slug)}}">
 		                                                    <i class="fa fa-pencil"></i>
 		                                                </a>
-		                                                <a href="{{ route('admin.cate_product.destroy', $c->slug) }}" type="button"
-		                                                onclick="return confirm_delete('Bạn có muốn xóa không ?')">
+		                                                <a href="{{ route('admin.cate_product.destroy', $c->id) }}"
+                                                            type="button"
+		                                                	onclick="return confirm_delete('Bạn có muốn xóa không ?')">
 		                                                    <i class="fa fa-times-circle"></i>
 		                                                </a>
 		                                            </td>
@@ -78,7 +89,7 @@
 		                                {{ $cate_product->links() }}
 		                            </div>
 		                        </div>
-		                        
+
 		                    </div>
 		                </div>
 		            </div>
