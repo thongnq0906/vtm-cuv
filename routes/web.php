@@ -24,8 +24,8 @@ Route::group(['prefix' => 'admin'], function() {
 	    Route::post('/create', 'Admin\CateProductController@postCreate')->name('admin.cate_product.createPost');
 	    Route::get('/update/{slug}', 'Admin\CateProductController@update')->name('admin.cate_product.update');
 	    Route::post('/update/{slug}', 'Admin\CateProductController@postUpdate')->name('admin.cate_product.postUpdate');
-	    Route::get('/destroy/{slug}', 'Admin\CateProductController@destroy')->name('admin.cate_product.destroy');
+	    Route::get('/destroy/{id}', 'Admin\CateProductController@destroy')->name('admin.cate_product.destroy');
 	});
-    
+
 });
 
