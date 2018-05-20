@@ -1,5 +1,5 @@
 @extends('admin.partials.master')
-@section('title', 'Category-Product')
+@section('title', 'Danh mục sản phẩm')
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
@@ -43,7 +43,6 @@
 		                                            <th>Tên danh mục</th>
 		                                            <th>Miêu tả</th>
 		                                            <th>Trạng thái</th>
-		                                            <th>Vị trí</th>
 		                                            <th>Cập nhật</th>
 		                                            <th>Xử lý</th>
 		                                        </tr>
@@ -70,7 +69,6 @@
 															</button>
 		                                            	@endif
 		                                            </td>
-		                                            <td>{{ $c->position }}</td>
 		                                            <td>{{ $c->updated_at }}</td>
 		                                            <td>
 		                                                <a href="{{ route('admin.cate_product.update', $c->slug)}}">

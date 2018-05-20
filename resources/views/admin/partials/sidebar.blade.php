@@ -24,18 +24,18 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      <li class="active treeview">
+      <li class="treeview">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
       </li>
-      <li class="active treeview">
+      <li class="{{ Request::is('admin/cate_product*','admin/product*') ? 'active' : '' }} treeview">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Quản lý sản phẩm</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="active"><a href="{{ route('admin.cate_product.home') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
-          <li><a href="index2.html"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
+          <li class="{{ Request::is('admin/cate_product*') ? 'active' : '' }}"><a href="{{ route('admin.cate_product.home') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
+          <li class="{{ Request::is('admin/product*') ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
         </ul>
       </li>
       <li class="treeview">

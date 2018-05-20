@@ -58,7 +58,7 @@ class CateProductController extends Controller
     	return view('admin.cate_product.edit', compact('cate_product', 'data'));
     }
 
-    public function postUpdate($slug, UpdateCate_productRequest $req)
+    public function postUpdate($slug, Request $req)
     {
     	// $cate_product = Cate_product::findOrFail($slug);
     	$cate_product = Cate_product::where('slug', $slug)->first();
@@ -78,6 +78,10 @@ class CateProductController extends Controller
         } else{
             $cate_product->image = ('/photos/avatar5.png');
         }
+        $validatedData = $req->validate([
+            'name' => 'required|unique:cate_products,name,' .$cate_product->id,
+            'position' => 'numeric|nullable|min:0|unique:cate_products,position,' .$cate_product->id,
+        ]);
     	$cate_product->save();
 
     	return redirect()->route('admin.cate_product.home')->with('success','Sửa thành công');

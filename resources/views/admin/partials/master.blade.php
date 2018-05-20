@@ -84,5 +84,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/adminjs.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('ckeditor/ckfinder.js') }}"></script>
+    <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    @yield('script')
   </body>
 </html>
