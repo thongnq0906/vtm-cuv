@@ -38,6 +38,15 @@
           <li class="{{ Request::is('admin/product*') ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
         </ul>
       </li>
+      <li class="{{ Request::is('admin/cate_post*') ? 'active' : '' }} treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Quản lý tin</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ Request::is('admin/cate_post*') ? 'active' : '' }}"><a href="{{ route('admin.cate_post.home') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
+{{--           <li class="{{ Request::is('admin/product*') ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
+ --}}        </ul>
+      </li>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-files-o"></i>

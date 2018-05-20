@@ -34,6 +34,14 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/update/{slug}', 'Admin\ProductController@postUpdate')->name('admin.product.postUpdate');
         Route::get('/destroy/{id}', 'Admin\ProductController@destroy')->name('admin.product.destroy');
     });
+    Route::group(['prefix' => 'cate_post'], function() {
+        Route::get('/', 'Admin\CatePostController@index')->name('admin.cate_post.home');
+        Route::get('/create', 'Admin\CatePostController@create')->name('admin.cate_post.create');
+        Route::post('/create', 'Admin\CatePostController@postCreate')->name('admin.cate_post.createPost');
+        Route::get('/update/{slug}', 'Admin\CatePostController@update')->name('admin.cate_post.update');
+        Route::post('/update/{slug}', 'Admin\CatePostController@postUpdate')->name('admin.cate_post.postUpdate');
+        Route::get('/destroy/{id}', 'Admin\CatePostController@destroy')->name('admin.cate_post.destroy');
+    });
 
 });
 
