@@ -1,5 +1,5 @@
 @extends('admin.partials.master')
-@section('title', 'Category-Product')
+@section('title', 'Thêm sản phẩm')
 @section('content')
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -11,7 +11,6 @@
                     <h1>Thêm danh mục sản phẩm</h1>
                     <div class="options">
                         <div class="btn-toolbar">
-                            <a href="#" class="btn btn-default"><i class="fa fa-fw fa-cog"></i>Thêm mới</a>
                         </div>
                     </div>
                 </div>

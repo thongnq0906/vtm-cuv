@@ -1,5 +1,5 @@
 @extends('admin.partials.master')
-@section('title', 'Category-Product')
+@section('title', 'Sửa sản phẩm')
 @section('content')
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -93,15 +93,15 @@
                                                     <select class="form-control" name="parent_id">
                                                         <?php $hihi = DB::table('cate_products')
                                                         ->where('id',$cate_product->parent_id)->first(); ?>
-                                                            @if(isset($hihi))
-                                                            <option value="{{ $cate_product->parent_id }}">
-                                                                {{ $hihi->name }}
-                                                            </option>
-                                                            @else
-                                                            <option value="0">
-                                                                {{ $cate_product->name }}
-                                                            </option>
-                                                            @endif
+                                                        @if(isset($hihi))
+                                                        <option value="{{ $cate_product->parent_id }}">
+                                                            {{ $hihi->name }}
+                                                        </option>
+                                                        @else
+                                                        <option value="0">
+                                                            {{ $cate_product->name }}
+                                                        </option>
+                                                        @endif
                                                         <?php  menu($data);?>
                                                     </select>
                                                 </div>
