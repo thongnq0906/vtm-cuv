@@ -50,6 +50,14 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/update/{slug}', 'Admin\PostController@postUpdate')->name('admin.post.postUpdate');
         Route::get('/destroy/{id}', 'Admin\PostController@destroy')->name('admin.post.destroy');
     });
+    Route::group(['prefix' => 'intro'], function() {
+        Route::get('/', 'Admin\IntroController@index')->name('admin.intro.index');
+        Route::get('/create', 'Admin\IntroController@create')->name('admin.intro.create');
+        Route::post('/create', 'Admin\IntroController@postCreate')->name('admin.intro.createPost');
+        Route::get('/update/{slug}', 'Admin\IntroController@update')->name('admin.intro.update');
+        Route::post('/update/{slug}', 'Admin\IntroController@postUpdate')->name('admin.intro.postUpdate');
+        Route::get('/destroy/{id}', 'Admin\IntroController@destroy')->name('admin.intro.destroy');
+    });
 
 });
 

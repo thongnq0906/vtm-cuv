@@ -47,6 +47,12 @@
           <li class="{{ Request::is('admin/post*') ? 'active' : '' }}"><a href="{{ route('admin.post.index') }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
         </ul>
       </li>
+      <li class="{{ Request::is('admin/intro*') ? 'active' : '' }}">
+        <a href="{{ route('admin.intro.index') }}">
+          <i class="fa fa-dashboard"></i> <span>Quản lý giới thiệu</span>
+        </a>
+      </li>
+
       <li class="treeview">
         <a href="#">
           <i class="fa fa-files-o"></i>
