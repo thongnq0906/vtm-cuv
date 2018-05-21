@@ -1,5 +1,5 @@
 @extends('admin.partials.master')
-@section('title', 'Sửa Slide')
+@section('title', 'Thêm Slide')
 @section('content')
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -8,7 +8,7 @@
         <div class="static-content">
             <div class="page-content">
                 <div class="page-heading">
-                    <h1>Sửa Slide</h1>
+                    <h1>Thêm Slide</h1>
                     <div class="options">
                         <div class="btn-toolbar">
                         </div>
@@ -16,9 +16,8 @@
                 </div>
                 <ol class="breadcrumb">
                     <li>Trang chủ</li>
-                    <li>Quản lý Slide</li>
                     <li>Slide</li>
-                    <li class="active">Sửa</li>
+                    <li class="active">Thêm</li>
                 </ol>
                 <div class="container-fluid">
                     <div class="row">
@@ -28,15 +27,15 @@
                                 </div>
                                 <div class="panel-body">
                                     <form role="form" class="form-horizontal" method="POST"
-                                    action="{{ route('admin.slide.postUpdate', $slide->slug) }}"
+                                    action="{{ route('admin.slide.createPost') }}"
                                     enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="row">
                                             <div class="form-group{{ $errors->has('name') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Tên sản phẩm: </label>
+                                                <label class="col-md-3 control-label">Tên</label>
                                                 <div class="col-md-8">
                                                         <input type="text" class="form-control"
-                                                        placeholder="Nhập tên" name="name" value="{{ $slide->name }}">
+                                                        placeholder="Nhập tên" name="name" value="{{ old('name') }}">
                                                     @if($errors->has('name'))
                                                         <strong>
                                                             <span class="help-block">
@@ -49,9 +48,8 @@
                                             <div class="form-group{{ $errors->has('position') ? 'has-error' : '' }}">
                                                 <label class="col-md-3 control-label">Vị trí: </label>
                                                 <div class="col-md-8">
-                                                    <input type="number" class="form-control"
-                                                    placeholder="Nhập vị trí" name="position"
-                                                    value="{{ $slide->position }}">
+                                                        <input type="number" class="form-control"
+                                                        placeholder="Nhập vị trí" name="position" value="{{ old('position') }}">
                                                     @if($errors->has('position'))
                                                         <strong>
                                                             <span class="help-block">
@@ -61,9 +59,8 @@
                                                     @endif
                                                 </div>
                                             </div>
-
                                             <div class="form-group{{ $errors->has('image') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Ảnh: </label>
+                                                <label class="col-md-3 control-label">Ảnh bìa: </label>
                                                 <div class="col-md-8">
                                                         <input type="file" class="form-control" name="image">
                                                     @if($errors->has('image'))
@@ -76,38 +73,18 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-8">
-                                                    <img src="{{ asset($slide->image) }}"
-                                                    style="height: 50px; width: 50px">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="col-md-3 control-label">Trạng thái: </label>
                                                 <label class="switch">
-                                                    <input type="checkbox" name="status"
-                                                    {{ ($slide->status) ? 'checked': '' }}>
+                                                    <input type="checkbox" name="status" value="0">
 
                                                     <span class="slider round"></span>
                                                     <input type="hidden" name="id" value="1">
                                                 </label>
                                             </div>
-
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Xuất hiện: </label>
+                                                <label class="col-md-3 control-label">Danh mục: </label>
                                                 <div class="col-md-8">
                                                     <select class="form-control" name="cate_slide_id">
-                                                        <?php $hihi = DB::table('cate_slides')
-                                                        ->where('id',$slide->cate_slide_id)->first(); ?>
-                                                        @if(isset($hihi))
-                                                        <option value="{{ $slide->cate_slide_id }}">
-                                                            {{ $hihi->name }}
-                                                        </option>
-                                                        @else
-                                                        <option value="0">
-                                                            {{ $slide->name }}
-                                                        </option>
-                                                        @endif
                                                         <?php  menu($data);?>
                                                     </select>
                                                 </div>
@@ -138,3 +115,4 @@
 <!-- Main content -->
 </div><!-- /.content-wrapper -->
 @endsection
+

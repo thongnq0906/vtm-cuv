@@ -78,5 +78,21 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/', 'Admin\ContactController@index')->name('admin.contact.index');
         Route::get('/destroy/{id}', 'Admin\ContactController@destroy')->name('admin.contact.destroy');
     });
+    Route::group(['prefix' => 'slide'], function() {
+        Route::get('/', 'Admin\SlideController@index')->name('admin.slide.index');
+        Route::get('/create', 'Admin\SlideController@create')->name('admin.slide.create');
+        Route::post('/create', 'Admin\SlideController@postCreate')->name('admin.slide.createPost');
+        Route::get('/update/{id}', 'Admin\SlideController@update')->name('admin.slide.update');
+        Route::post('/update/{id}', 'Admin\SlideController@postUpdate')->name('admin.slide.postUpdate');
+        Route::get('/destroy/{id}', 'Admin\SlideController@destroy')->name('admin.slide.destroy');
+    });
+    Route::group(['prefix' => 'cate_slide'], function() {
+        Route::get('/', 'Admin\CateSlideController@index')->name('admin.cate_slide.home');
+        Route::get('/create', 'Admin\CateSlideController@create')->name('admin.cate_slide.create');
+        Route::post('/create', 'Admin\CateSlideController@postCreate')->name('admin.cate_slide.createPost');
+        Route::get('/update/{id}', 'Admin\CateSlideController@update')->name('admin.cate_slide.update');
+        Route::post('/update/{id}', 'Admin\CateSlideController@postUpdate')->name('admin.cate_slide.postUpdate');
+        Route::get('/destroy/{id}', 'Admin\CateSlideController@destroy')->name('admin.cate_slide.destroy');
+    });
 });
 

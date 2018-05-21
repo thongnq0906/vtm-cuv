@@ -16,7 +16,6 @@
                 </div>
                 <ol class="breadcrumb">
                     <li>Trang chủ</li>
-                    <li>Quản lý Slide</li>
                     <li>Slide</li>
                     <li class="active">Sửa</li>
                 </ol>
@@ -28,12 +27,12 @@
                                 </div>
                                 <div class="panel-body">
                                     <form role="form" class="form-horizontal" method="POST"
-                                    action="{{ route('admin.slide.postUpdate', $slide->slug) }}"
+                                    action="{{ route('admin.slide.postUpdate', $slide->id) }}"
                                     enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="row">
                                             <div class="form-group{{ $errors->has('name') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Tên sản phẩm: </label>
+                                                <label class="col-md-3 control-label">Tên: </label>
                                                 <div class="col-md-8">
                                                         <input type="text" class="form-control"
                                                         placeholder="Nhập tên" name="name" value="{{ $slide->name }}">
@@ -61,9 +60,8 @@
                                                     @endif
                                                 </div>
                                             </div>
-
                                             <div class="form-group{{ $errors->has('image') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Ảnh: </label>
+                                                <label class="col-md-3 control-label">Ảnh bìa: </label>
                                                 <div class="col-md-8">
                                                         <input type="file" class="form-control" name="image">
                                                     @if($errors->has('image'))
@@ -92,9 +90,8 @@
                                                     <input type="hidden" name="id" value="1">
                                                 </label>
                                             </div>
-
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Xuất hiện: </label>
+                                                <label class="col-md-3 control-label">Danh mục: </label>
                                                 <div class="col-md-8">
                                                     <select class="form-control" name="cate_slide_id">
                                                         <?php $hihi = DB::table('cate_slides')
@@ -137,4 +134,16 @@
 </section>
 <!-- Main content -->
 </div><!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script>
+    CKEDITOR.replace( 'editor1', {
+    filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+    filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+    filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+    filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+    filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+    filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+} );
+</script>
 @endsection
