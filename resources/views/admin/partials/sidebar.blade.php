@@ -52,6 +52,21 @@
           <i class="fa fa-dashboard"></i> <span>Quản lý giới thiệu</span>
         </a>
       </li>
+      <li class="{{ Request::is('admin/support*') ? 'active' : '' }}">
+        <a href="{{ route('admin.support.index') }}">
+          <i class="fa fa-dashboard"></i> <span>Quản lý hỗ trợ</span>
+        </a>
+      </li>
+      <li class="{{ Request::is('admin/banner*') ? 'active' : '' }}">
+        <a href="{{ route('admin.banner.index') }}">
+          <i class="fa fa-dashboard"></i> <span>Quản lý banner</span>
+        </a>
+      </li>
+      <li class="{{ Request::is('admin/contact*') ? 'active' : '' }}">
+        <a href="{{ route('admin.contact.index') }}">
+          <i class="fa fa-dashboard"></i> <span>Quản lý contact</span>
+        </a>
+      </li>
 
       <li class="treeview">
         <a href="#">
