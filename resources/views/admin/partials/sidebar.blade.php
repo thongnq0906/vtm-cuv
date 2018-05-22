@@ -4,10 +4,10 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
       </div>
       <div class="pull-left info">
-        <p>Alexander Pierce</p>
+        <p>{{ Auth::user()->name }}</p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -74,6 +74,11 @@
       <li class="{{ Request::is('admin/contact*') ? 'active' : '' }}">
         <a href="{{ route('admin.contact.index') }}">
           <i class="fa fa-dashboard"></i> <span>Quản lý contact</span>
+        </a>
+      </li>
+      <li class="{{ Request::is('admin/administrator*') ? 'active' : '' }}">
+        <a href="{{ route('admin.administrator.home') }}">
+          <i class="fa fa-dashboard"></i> <span>Quản lý administrator</span>
         </a>
       </li>
 
