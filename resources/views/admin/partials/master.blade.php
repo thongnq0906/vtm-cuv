@@ -58,7 +58,6 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
     <!-- Morris.js charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="{{ asset('plugins/morris/morris.min.js') }}" type="text/javascript"></script>
     <!-- Sparkline -->
     <script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js') }}" type="text/javascript"></script>
     <!-- jvectormap -->
@@ -76,15 +75,13 @@
     <!-- Slimscroll -->
     <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
     <!-- FastClick -->
-    <script src="{{ asset('plugins/fastclick/fastclick.min.js') }} type="text/javascript"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/app.min.js') }}" type="text/javascript"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dist/js/pages/dashboard.js') }}" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/adminjs.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('ckeditor/ckfinder.js') }}"></script>
+    <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     @yield('script')
   </body>
