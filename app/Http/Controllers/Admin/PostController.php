@@ -42,12 +42,12 @@ class PostController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
 
-            $post->image = ('/photos/'.$filename);
+            $post->image = ('photos/'.$filename);
 
         } else{
-            $post->image = ('/photos/avatar5.png');
+            $post->image = ('photos/avatar5.png');
         }
         $post->save();
 
@@ -77,14 +77,11 @@ class PostController extends Controller
         $post->meta_key = $req['meta_key'];
         $post->meta_des = $req['meta_des'];
         if($req->hasFile('image')){
+            unlink($post->image);
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
-
-            $post->image = ('/photos/'.$filename);
-
-        } else{
-            $post->image = ('/photos/avatar5.png');
+            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
+            $post->image = ('photos/'.$filename);
         }
         $validatedData = $req->validate([
             'name' => 'required|unique:posts,name,' .$post->id,
@@ -97,8 +94,12 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        Post::findOrFail($id)->delete();
-
+        $result = Post::findOrFail($id);
+        if(file_exists($result->image))
+        {
+            unlink($result->image);
+        }
+        $result->delete();
         return redirect()->back()->with('success', 'Xóa thành công');
     }
 }

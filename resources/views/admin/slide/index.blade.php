@@ -51,11 +51,19 @@
                                                 @foreach($slide as $key => $c)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>
-                                                        <img src="{{ asset($c->image) }}">
+                                                    <td style="width: 30%;">
+                                                        <img src="{{ asset($c->image) }}" style="width: 90%;">
                                                     </td>
                                                     <td>{{ $c->name }}</td>
-                                                    <td>{{ $c->Cate_slide->name }}</td>
+                                                    <td>
+                                                        @if($c->dislay == 1)
+                                                            {{ "Slide show" }}
+                                                        @elseif($c->dislay == 2)
+                                                            {{ "Đối tác" }}
+                                                        @else
+                                                            {{ "Sản phẩm hợp tác"}}
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $c->position }}</td>
                                                     <td>
                                                         @if($c->status == 1)
@@ -86,7 +94,6 @@
                                         {{ $slide->links() }}
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

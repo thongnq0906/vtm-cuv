@@ -49,8 +49,8 @@
                                             <div class="form-group{{ $errors->has('position') ? 'has-error' : '' }}">
                                                 <label class="col-md-3 control-label">Vị trí: </label>
                                                 <div class="col-md-8">
-                                                        <input type="text" class="form-control"
-                                                        placeholder="Name" name="position" value="{{ old('position') }}">
+                                                        <input type="number" class="form-control"
+                                                        placeholder="Vị trí" name="position" value="{{ old('position') }}">
                                                     @if($errors->has('position'))
                                                         <strong>
                                                             <span class="help-block">

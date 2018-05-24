@@ -50,8 +50,8 @@
 		                                        <tr>
 		                                            <td>{{ $key + 1 }}</td>
 		                                            <td>{{ $c->name }}</td>
-		                                            <td>
-		                                            	<img src="{{ asset($c->image) }}">
+		                                            <td >
+		                                            	<img src="{{ asset($c->image) }}" style="width: 90%">
 		                                            </td>
 		                                            <td>
 		                                            	@if($c->status == 1)

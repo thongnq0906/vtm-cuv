@@ -38,12 +38,12 @@ class CatePostController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
 
-            $cate_post->image = ('/photos/'.$filename);
+            $cate_post->image = ('photos/'.$filename);
 
         } else{
-            $cate_post->image = ('/photos/avatar5.png');
+            $cate_post->image = ('photos/avatar5.png');
         }
         $cate_post->save();
 
@@ -70,14 +70,14 @@ class CatePostController extends Controller
         $cate_post->status = (is_null($req['status']) ? '0' : '1');
         // dd($req->hasFile('image'));
         if($req->hasFile('image')){
+            $abc = $cate_post->image;
+            Storage::delete($abc);
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
 
-            $cate_post->image = ('/photos/'.$filename);
+            $cate_post->image = ('photos/'.$filename);
 
-        } else{
-            $cate_post->image = ('/photos/avatar5.png');
         }
         $validatedData = $req->validate([
             'name' => 'required|unique:cate_posts,name,' .$cate_post->id,
@@ -88,10 +88,23 @@ class CatePostController extends Controller
         return redirect()->route('admin.cate_post.home')->with('success','Sửa thành công');
     }
 
-    public function destroy(Request $req)
+    public function destroy($id)
     {
-        Cate_post::where('id', $req['id'])->first()->delete();
-        Cate_post::where('parent_id', $req['id'])->delete();
+        $result = Cate_post::findOrFail($id);
+        $result2 = Cate_post::where('parent_id', $id)->first();
+        if(file_exists($result->image))
+        {
+            unlink($result->image);
+        }
+        if(isset($result2))
+        {
+            if(file_exists($result2->image))
+            {
+                unlink($result2->image);
+            }
+            $result2->delete();
+        }
+        $result->delete();
 
         return redirect()->back()->with('success', 'Xóa thành công');
     }

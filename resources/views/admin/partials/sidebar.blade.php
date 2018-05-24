@@ -47,14 +47,10 @@
           <li class="{{ Request::is('admin/post*') ? 'active' : '' }}"><a href="{{ route('admin.post.index') }}"><i class="fa fa-circle-o"></i> Bài viết</a></li>
         </ul>
       </li>
-      <li class="{{ Request::is('admin/cate_slide*','admin/slide*') ? 'active' : '' }} treeview">
-        <a href="#">
-          <i class="fa fa-dashboard"></i> <span>Quản lý Slide</span> <i class="fa fa-angle-left pull-right"></i>
+      <li class="{{ Request::is('admin/slide*') ? 'active' : '' }}">
+        <a href="{{ route('admin.slide.index') }}">
+          <i class="fa fa-dashboard"></i> <span>Quản lý slide</span>
         </a>
-        <ul class="treeview-menu">
-          <li class="{{ Request::is('admin/cate_slide*') ? 'active' : '' }}"><a href="{{ route('admin.cate_slide.home') }}"><i class="fa fa-circle-o"></i> Danh mục</a></li>
-          <li class="{{ Request::is('admin/slide*') ? 'active' : '' }}"><a href="{{ route('admin.slide.index') }}"><i class="fa fa-circle-o"></i> Ảnh</a></li>
-        </ul>
       </li>
       <li class="{{ Request::is('admin/intro*') ? 'active' : '' }}">
         <a href="{{ route('admin.intro.index') }}">

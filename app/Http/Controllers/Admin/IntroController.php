@@ -38,12 +38,12 @@ class IntroController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->save(public_path('photos/'.$filename));
 
-            $intro->image = ('/photos/'.$filename);
+            $intro->image = ('photos/'.$filename);
 
         } else{
-            $intro->image = ('/photos/avatar5.png');
+            $intro->image = ('photos/avatar5.png');
         }
         $intro->save();
 
@@ -70,14 +70,13 @@ class IntroController extends Controller
         $intro->meta_key = $req['meta_key'];
         $intro->meta_des = $req['meta_des'];
         if($req->hasFile('image')){
+            unlink($intro->image);
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->save(public_path('photos/'.$filename));
 
-            $intro->image = ('/photos/'.$filename);
+            $intro->image = ('photos/'.$filename);
 
-        } else{
-            $intro->image = ('/photos/avatar5.png');
         }
         $validatedData = $req->validate([
             'name' => 'required|unique:intros,name,' .$intro->id,
@@ -90,8 +89,12 @@ class IntroController extends Controller
 
     public function destroy($id)
     {
-        Intro::findOrFail($id)->delete();
-
+        $result = Intro::findOrFail($id);
+        if(file_exists($result->image))
+        {
+            unlink($result->image);
+        }
+        $result->delete();
         return redirect()->back()->with('success', 'Xóa thành công');
     }
 }
