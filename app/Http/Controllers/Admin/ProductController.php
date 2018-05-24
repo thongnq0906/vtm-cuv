@@ -45,12 +45,12 @@ class ProductController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->save(public_path('photos/'.$filename));
 
-            $product->image = ('/photos/'.$filename);
+            $product->image = ('photos/'.$filename);
 
         } else{
-            $product->image = ('/photos/avatar5.png');
+            $product->image = ('photos/avatar5.png');
         }
         $product->save();
 
@@ -83,14 +83,12 @@ class ProductController extends Controller
         $product->meta_key = $req['meta_key'];
         $product->meta_des = $req['meta_des'];
         if($req->hasFile('image')){
+            unlink($product->image);
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->save(public_path('photos/'.$filename));
+            $product->image = ('photos/'.$filename);
 
-            $product->image = ('/photos/'.$filename);
-
-        } else{
-            $product->image = ('/photos/avatar5.png');
         }
         $validatedData = $req->validate([
             'name' => 'required|unique:products,name,' .$product->id,
@@ -104,8 +102,12 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        Product::findOrFail($id)->delete();
-
+        $result = Product::findOrFail($id);
+        if(file_exists($result->image))
+        {
+            unlink($result->image);
+        }
+        $result->delete();
         return redirect()->back()->with('success', 'Xóa thành công');
     }
 }

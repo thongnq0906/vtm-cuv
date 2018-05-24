@@ -93,19 +93,16 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Danh mục: </label>
                                                 <div class="col-md-8">
-                                                    <select class="form-control" name="cate_slide_id">
-                                                        <?php $hihi = DB::table('cate_slides')
-                                                        ->where('id',$slide->cate_slide_id)->first(); ?>
-                                                        @if(isset($hihi))
-                                                        <option value="{{ $slide->cate_slide_id }}">
-                                                            {{ $hihi->name }}
+                                                    <select class="form-control" name="dislay">
+                                                        <option <?php if($slide->dislay ==1) echo 'selected="selected"';?> value="1">
+                                                            SideShow
                                                         </option>
-                                                        @else
-                                                        <option value="0">
-                                                            {{ $slide->name }}
+                                                        <option <?php if($slide->dislay ==2) echo 'selected="selected"';?> value="2">
+                                                            Đối tác
                                                         </option>
-                                                        @endif
-                                                        <?php  menu($data);?>
+                                                        <option <?php if($slide->dislay ==3) echo 'selected="selected"';?> value="3">
+                                                            Sản phẩm hợp tác
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>

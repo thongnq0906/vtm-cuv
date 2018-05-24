@@ -8,7 +8,6 @@ use App\Models\Cate_product;
 use App\Http\Requests\Cate_productRequest;
 use App\Http\Requests\UpdateCate_productRequest;
 use Image;
-use File;
 
 class CateProductController extends Controller
 {
@@ -38,12 +37,12 @@ class CateProductController extends Controller
     	if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
 
-            $cate_product->image = ('/photos/'.$filename);
+            $cate_product->image = ('photos/'.$filename);
 
         } else{
-            $cate_product->image = ('/photos/avatar5.png');
+            $cate_product->image = ('photos/avatar5.png');
         }
     	$cate_product->save();
 
@@ -69,14 +68,13 @@ class CateProductController extends Controller
     	$cate_product->status = (is_null($req['status']) ? '0' : '1');
     	// dd($req->hasFile('image'));
     	if($req->hasFile('image')){
+            unlink($cate_product->image);
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('/photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
 
-            $cate_product->image = ('/photos/'.$filename);
+            $cate_product->image = ('photos/'.$filename);
 
-        } else{
-            $cate_product->image = ('/photos/avatar5.png');
         }
         $validatedData = $req->validate([
             'name' => 'required|unique:cate_products,name,' .$cate_product->id,
@@ -87,10 +85,23 @@ class CateProductController extends Controller
     	return redirect()->route('admin.cate_product.home')->with('success','Sửa thành công');
     }
 
-    public function destroy(Request $req)
+    public function destroy($id)
     {
-    	Cate_product::where('id', $req['id'])->first()->delete();
-    	Cate_product::where('parent_id', $req['id'])->delete();
+        $result = Cate_product::findOrFail($id);
+        $result2 = Cate_product::where('parent_id', $id)->first();
+        if(file_exists($result->image))
+        {
+            unlink($result->image);
+        }
+        if(isset($result2))
+        {
+            if(file_exists($result2->image))
+            {
+                unlink($result2->image);
+            }
+            $result2->delete();
+        }
+        $result->delete();
 
     	return redirect()->back()->with('success', 'Xóa thành công');
     }

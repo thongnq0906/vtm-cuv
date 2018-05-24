@@ -16,11 +16,10 @@ class CreateSidesTables extends Migration
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->integer('cate_slide_id')->unsigned()->nullable();
             $table->string('image');
             $table->boolean('status')->default(0);
             $table->integer('position')->unique()->nullable();
-            $table->foreign('cate_slide_id')->references('id')->on('cate_slides')->onDelete('cascade');
+            $table->integer('dislay')->nullable();
             $table->timestamps();
         });
     }

@@ -84,8 +84,10 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Danh mục: </label>
                                                 <div class="col-md-8">
-                                                    <select class="form-control" name="cate_slide_id">
-                                                        <?php  menu($data);?>
+                                                    <select class="form-control" name="dislay">
+                                                        <option value="1">Slide</option>
+                                                        <option value="2">Đối tác</option>
+                                                        <option value="3">Sản phẩm hợp tác</option>
                                                     </select>
                                                 </div>
                                             </div>

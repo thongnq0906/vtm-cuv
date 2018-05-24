@@ -31,12 +31,12 @@ class BannerController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('/photos/'.$filename));
+            Image::make($image)->save(public_path('photos/'.$filename));
 
-            $banner->image = ('/photos/'.$filename);
+            $banner->image = ('photos/'.$filename);
 
         } else{
-            $banner->image = ('/photos/avatar5.png');
+            $banner->image = ('photos/avatar5.png');
         }
         $banner->save();
 
@@ -56,14 +56,12 @@ class BannerController extends Controller
         $banner->name = $req['name'];
         $banner->status = (is_null($req['status']) ? '0' : '1');
         if($req->hasFile('image')){
+            $abc = $banner->image;
+            Storage::delete($abc);
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('/photos/'.$filename));
-
-            $banner->image = ('/photos/'.$filename);
-
-        } else{
-            $banner->image = ('/photos/avatar5.png');
+            Image::make($image)->save(public_path('photos/'.$filename));
+            $banner->image = ('photos/'.$filename);
         }
         $banner->save();
 
@@ -72,7 +70,12 @@ class BannerController extends Controller
 
     public function destroy($id)
     {
-        Banner::findOrFail($id)->delete();
+        $result = Banner::findOrFail($id);
+        if(file_exists($result->image))
+        {
+            unlink($result->image);
+        }
+        $result->delete();
 
         return redirect()->back()->with('success', 'Xóa thành công');
     }

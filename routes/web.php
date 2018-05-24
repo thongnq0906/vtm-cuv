@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('admin/login', 'Admin\LoginController@getLogin')->name('admin.getLogin');
 Route::post('admin/login', 'Admin\LoginController@postLogin')->name('admin.postLogin');
 Route::group(['middleware' => 'adminLogin'], function() {
@@ -104,4 +102,6 @@ Route::group(['middleware' => 'adminLogin'], function() {
         });
     });
 });
+
+Route::get('/', 'Frontend\HomeController@index')->name('index');
 
