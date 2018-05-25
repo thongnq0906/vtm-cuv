@@ -1,6 +1,9 @@
 <div id="slide">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox" id="slide1">
+            <?php
+                $slide = DB::table('slides')->where('status', 1)->where('dislay', 1)->get();
+            ?>
             @foreach($slide as $c)
             <div class="item">
                 <img src="{{ asset($c->image) }}" alt="imgSlide" title="" id="wows1_0"

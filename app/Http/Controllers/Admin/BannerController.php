@@ -50,7 +50,7 @@ class BannerController extends Controller
         return view('admin.banner.edit', compact('banner'));
     }
 
-    public function postUpdate($id, BannerRequest $req)
+    public function postUpdate($id, Request $req)
     {
         $banner = Banner::where('id', $id)->first();
         $banner->name = $req['name'];
