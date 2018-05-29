@@ -22,8 +22,9 @@
     @include('frontend.partials.header')
     <div class="box-content">
         @yield('content')
-        @include('frontend.partials.footer')
     </div>
+    @include('frontend.partials.footer')
+    @yield('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/jquery.min.js') }}"></script>
@@ -31,10 +32,13 @@
     <script type="text/javascript" src="{{ asset('frontend/js/lightslider.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/ddsmoothmenu.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/devjs.js') }}"></script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=853590061415267&ev=PageView&noscript=1" />
-    </noscript>
+    {{-- <script src="{{ asset('js/jcarousellite_1.0.1c4.js') }}" type="text/javascript"></script> --}}
+    <script type="text/javascript" src="http://cuv.com.vn/js/jquery.validate.js"></script>
+    <link href="http://cuv.com.vn/css/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <script src='http://cuv.com.vn/js/jquery.elevateZoom-3.0.8.min.js'></script>
+    <script src='http://cuv.com.vn/js/jquery.fancybox.js'></script>
+    <script src="http://cuv.com.vn/js/jcarousellite_1.0.1c4.js" type="text/javascript"></script>
+
     <script type="text/javascript">
         ddsmoothmenu.init({
             mainmenuid: "smoothmenu3",
@@ -42,6 +46,61 @@
             classname: 'ddsmoothmenu3',
             contentsource: "markup"
         })
+    </script>
+    <script type="text/javascript">
+            ddsmoothmenu.init({
+                mainmenuid: "smoothmenu4",
+                orientation: 'h',
+                classname: 'dm',
+                contentsource: "markup"
+            })
+        </script>
+    {{-- <script type="text/javascript">
+        $(function($) {
+            $(".newsticker-jcarousellite").jCarouselLite({
+                vertical: true,
+                hoverPause:true,
+                visible: 4,
+                auto:500,
+                speed:3000,
+                liWidth: 207,
+                liHeight: 180
+            });
+        });
+    </script> --}}
+    <script>
+        $("#img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', scrollZoom : true});
+        $("#img_01").bind("click", function(e) {
+        var ez =   $('#img_01').data('elevateZoom');
+        $.fancybox(ez.getGalleryList());
+        return false;
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            $(".content").hide();
+            $(".activeDiv").show(1);
+
+            $(".pvt_compe").click(function(){
+            //chuyển tap li
+            $(".pvt_compe").each(function(){
+                $(this).removeClass("active");
+            })
+            $(this).addClass("active");
+
+
+            $(".content").hide();
+            stt = $(this).attr("stt");
+            $(".content").each(function(){
+
+                if($(this).attr("sttdiv")==stt){
+                    $(this).fadeIn(1);
+                }
+
+            });
+            });
+            });
     </script>
 </body>
 

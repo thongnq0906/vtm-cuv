@@ -104,4 +104,7 @@ Route::group(['middleware' => 'adminLogin'], function() {
 });
 
 Route::get('/', 'Frontend\HomeController@index')->name('index');
+Route::get('/product', 'Frontend\ProductController@cateProductLv1')->name('cate_product_lv1');
+Route::get('/{id}', 'Frontend\ProductController@product')->name('product');
+Route::get('/sanpham/{id}', 'Frontend\ProductController@detailProduct')->name('detail_product');
 
