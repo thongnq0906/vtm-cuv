@@ -26,6 +26,7 @@ class SupportRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required|regex:/(0)[0-9]{9}/|max:11',
+            'position' => 'numeric|nullable|min:0|unique:supports,position,',
         ];
     }
 }

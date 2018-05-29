@@ -40,7 +40,7 @@
                     <li style="border-left:none;">
                         <a href="{{ route('index') }}"><span><i class="fas fa-home"></i></span> Trang chủ</a></li>
                     <li style=" "><a href="">Giới thiệu</a></li>
-                    <li style=" "><a href="">Sản phẩm</a>
+                    <li style=" "><a href="{{ route('cate_product_lv1') }}">Sản phẩm</a>
                         <?php
                             $level_1 = DB::table('cate_products')->where([['status', 1], ['parent_id', 0]])
                                 ->orderBy('position', 'ASC')->get();
@@ -49,14 +49,14 @@
                             @foreach($level_1 as $l)
                                 <li>
                                     <ul>
-                                        <div id="row-right"><a href="" class="sf-with-ul">{{ $l->name }}</a>
+                                        <div id="row-right"><a href="{{ route('product', $l->id) }}" class="sf-with-ul">{{ $l->name }}</a>
                                             <?php
                                                 $level_2 = DB::table('cate_products')->where('status', 1)
                                                     ->where('parent_id', $l->id)->orderBy('position', 'ASC')->get();
                                             ?>
                                             @foreach($level_2 as $v)
                                                 <li>
-                                                    <a href="" class="sf-with-ul">{{ $v->name }}</a>
+                                                    <a href="{{ route('product', $v->id) }}" class="sf-with-ul">{{ $v->name }}</a>
                                                 </li>
                                             @endforeach
                                         </div>

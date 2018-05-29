@@ -1,5 +1,5 @@
 @extends('admin.partials.master')
-@section('title', 'Thêm')
+@section('title', 'Thêm bài viết')
 @section('content')
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -8,7 +8,7 @@
         <div class="static-content">
             <div class="page-content">
                 <div class="page-heading">
-                    <h1>Thêm</h1>
+                    <h1>Thêm bài viết</h1>
                     <div class="options">
                         <div class="btn-toolbar">
                         </div>
@@ -16,7 +16,8 @@
                 </div>
                 <ol class="breadcrumb">
                     <li>Trang chủ</li>
-                    <li>Quản lý slide</li>
+                    <li>Quản lý bài viết</li>
+                    <li>Bài viết</li>
                     <li class="active">Thêm</li>
                 </ol>
                 <div class="container-fluid">
@@ -27,7 +28,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <form role="form" class="form-horizontal" method="POST"
-                                    action="{{ route('admin.slide.createPost') }}"
+                                    action="{{ route('admin.post.createPost') }}"
                                     enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="row">
@@ -59,8 +60,37 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            <div class="form-group{{ $errors->has('title') ? 'has-error' : '' }}">
+                                                <label class="col-md-3 control-label">Giới thiệu: </label>
+                                                <div class="col-md-8">
+                                                        <input type="text" class="form-control" placeholder="Giới thiệu"
+                                                        name="title" value="{{ old('title') }}">
+                                                    @if($errors->has('title'))
+                                                        <strong>
+                                                            <span class="help-block">
+                                                                {{ $errors->first('title') }}
+                                                            </span>
+                                                        </strong>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-group{{ $errors->has('description') ? 'has-error' : '' }}">
+                                                <label class="col-md-3 control-label">Miêu tả: </label>
+                                                <div class="col-md-8">
+
+                                                        <textarea name="description" class="form-control "
+                                                        id="editor1">{{ old('description') }}</textarea>
+                                                    @if($errors->has('description'))
+                                                        <strong>
+                                                            <span class="help-block">
+                                                                {{ $errors->first('description') }}
+                                                            </span>
+                                                        </strong>
+                                                    @endif
+                                                </div>
+                                            </div>
                                             <div class="form-group{{ $errors->has('image') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Ảnh: </label>
+                                                <label class="col-md-3 control-label">Ảnh bìa: </label>
                                                 <div class="col-md-8">
                                                         <input type="file" class="form-control" name="image">
                                                     @if($errors->has('image'))
@@ -82,11 +112,62 @@
                                                 </label>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Vị trí: </label>
+                                                <label class="col-md-3 control-label">Tin hot: </label>
+                                                <label class="switch">
+                                                    <input type="checkbox" name="is_home" value="0">
+
+                                                    <span class="slider round"></span>
+                                                    <input type="hidden" name="idd" value="1">
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Danh mục: </label>
                                                 <div class="col-md-8">
-                                                    <select class="form-control" name="cate_slide_id">
+                                                    <select class="form-control" name="cate_post_id">
                                                         <?php  menu($data);?>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group{{ $errors->has('title_seo') ? 'has-error' : '' }}">
+                                                <label class="col-md-3 control-label">Title_SEO: </label>
+                                                <div class="col-md-8">
+                                                        <input type="text" class="form-control" placeholder="Title SEO"
+                                                        name="title_seo" value="{{ old('title_seo') }}">
+                                                    @if($errors->has('title_seo'))
+                                                        <strong>
+                                                            <span class="help-block">
+                                                                {{ $errors->first('title_seo') }}
+                                                            </span>
+                                                        </strong>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-group{{ $errors->has('meta_key') ? 'has-error' : '' }}">
+                                                <label class="col-md-3 control-label">Meta_key: </label>
+                                                <div class="col-md-8">
+                                                        <textarea class="form-control" placeholder="Meta_key"
+                                                        name="meta_key">{{ old('meta_key') }}</textarea>
+                                                    @if($errors->has('meta_key'))
+                                                        <strong>
+                                                            <span class="help-block">
+                                                                {{ $errors->first('meta_key') }}
+                                                            </span>
+                                                        </strong>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-group{{ $errors->has('meta_des') ? 'has-error' : '' }}">
+                                                <label class="col-md-3 control-label">Meta_Des: </label>
+                                                <div class="col-md-8">
+                                                        <textarea class="form-control" placeholder="Meta_Des"
+                                                        name="meta_des">{{ old('meta_des') }}</textarea>
+                                                    @if($errors->has('meta_des'))
+                                                        <strong>
+                                                            <span class="help-block">
+                                                                {{ $errors->first('meta_des') }}
+                                                            </span>
+                                                        </strong>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -95,7 +176,7 @@
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <button class="btn-success btn">Lưu</button>
                                                     <a class="btn-default btn"
-                                                    href="{{ route('admin.slide.create') }}">
+                                                    href="{{ route('admin.post.create') }}">
                                                         Hủy
                                                     </a>
                                                     <a class="btn-default btn" href='javascript:goback()'>Quay lại</a>
