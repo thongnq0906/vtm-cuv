@@ -39,7 +39,7 @@
                 <ul>
                     <li style="border-left:none;">
                         <a href="{{ route('index') }}"><span><i class="fas fa-home"></i></span> Trang chủ</a></li>
-                    <li style=" "><a href="">Giới thiệu</a></li>
+                    <li style=" "><a href="{{ route('intro') }}">Giới thiệu</a></li>
                     <li style=" "><a href="{{ route('cate_product_lv1') }}">Sản phẩm</a>
                         <?php
                             $level_1 = DB::table('cate_products')->where([['status', 1], ['parent_id', 0]])
@@ -69,18 +69,18 @@
                         $lv1 = DB::table('cate_posts')->where([['status', 1], ['parent_id', 0]])->orderBy('position', 'ASC')->get();
                     ?>
                     @foreach($lv1 as $l)
-                        <li><a href="http://demo.cuv.com.vn/tin-tuc/6/dich-vu" class="sf-with-ul">{{ $l->name }}</a>
+                        <li><a href="{{ route('list_post', $l->id) }}" class="sf-with-ul">{{ $l->name }}</a>
                             <ul>
                                 <?php
                                     $lv2 = DB::table('cate_posts')->where('status', 1)->where('parent_id', $l->id)->orderBy('position', 'ASC')->get();
                                 ?>
                                 @foreach ($lv2 as $v)
-                                    <li><a href="" class="sf-with-ul">{{ $v->name }}</a></li>
+                                    <li><a href="{{ route('list_post', $v->id) }}" class="sf-with-ul">{{ $v->name }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
                     @endforeach
-                    <li style="border-right:none;"><a href="#"> Liên hệ</a></li>
+                    <li style="border-right:none;"><a href="{{ route('contact') }}"> Liên hệ</a></li>
                 </ul>
             </div>
         </div>
@@ -97,7 +97,7 @@
                                 <p><a class="accordion-toggle" href="">{{ $l->name }}</a></p>
                             @endforeach
                             <p><a class="accordion-toggle" href="">Tin tức</a></p>
-                            <p> <a class="accordion-toggle" href="">Liên hệ</a></p>
+                            <p> <a class="accordion-toggle" href="{{ route('contact') }}">Liên hệ</a></p>
                         </div>
                         <div id="collapse" class="accordion-body collapse">
                             <div class="accordion-inner">

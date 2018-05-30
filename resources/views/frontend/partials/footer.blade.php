@@ -57,11 +57,11 @@
             <ul>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
-                <li><a href=""></a></li><img src="http://cuv.com.vn/images/12.jpg">
+                <li><a href=""></a></li><img src="{{ asset('frontend/images/12.jpg') }}">
             </ul>
         </div>
         <div class="col-xs-12 col-sm-12 col-lg-3" id="roww11">
-            <img src="http://cuv.com.vn/images/a111.jpg">
+            <img src="{{ asset('frontend/images/a111.jpg') }}">
         </div>
     </div>
 </div>
