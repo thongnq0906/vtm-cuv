@@ -19,13 +19,20 @@ class ProductController extends Controller
 
     public function product($id)
     {
-        $cate_product = Cate_product::where('parent_id', $id)->first();
-        if(isset($cate_product))
+        session()->put('id',$id);
+        $product = Product::orderBy('position','ASC')->where(function($query)
         {
-            $product = Product::where('status', 1)->where('cate_product_id', $cate_product->id)->orWhere('cate_product_id', $id)->get();
-        }else{
-            $product = Product::where('cate_product_id', $id)->get();
-        }
+            $pro = $query;
+            $id = session('id');
+            $cate_product = Cate_product::find($id);
+
+            $pro = $pro->orWhere('cate_product_id',$cate_product->id); // bài viết có id của danh muc cha cấp 1.
+            $com = Cate_product::where('parent_id',$cate_product->id)->get();//danh mục cha cấp 2.
+            foreach ($com as $dt) {
+                $pro = $pro->orWhere('cate_product_id',$dt->id);// bài viết có id của danh muc cha cấp 2.
+            }
+            session()->forget('id');//xóa session;
+        })->get();
 
         return view('frontend.products.cate_lv2', compact('product'));
     }

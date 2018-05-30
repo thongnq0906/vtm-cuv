@@ -24,7 +24,7 @@
         @yield('content')
     </div>
     @include('frontend.partials.footer')
-    @yield('script')
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/jquery.min.js') }}"></script>
@@ -33,11 +33,11 @@
     <script type="text/javascript" src="{{ asset('frontend/js/ddsmoothmenu.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/devjs.js') }}"></script>
     {{-- <script src="{{ asset('js/jcarousellite_1.0.1c4.js') }}" type="text/javascript"></script> --}}
-    <script type="text/javascript" src="http://cuv.com.vn/js/jquery.validate.js"></script>
-    <link href="http://cuv.com.vn/css/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-    <script src='http://cuv.com.vn/js/jquery.elevateZoom-3.0.8.min.js'></script>
-    <script src='http://cuv.com.vn/js/jquery.fancybox.js'></script>
-    <script src="http://cuv.com.vn/js/jcarousellite_1.0.1c4.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/jquery.validate.js') }}"></script>
+    <link href="{{ asset('frontend/css/jquery.fancybox.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('frontend/js/jquery.elevateZoom-3.0.8.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('frontend/js/jcarousellite_1.0.1c4.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
         ddsmoothmenu.init({
@@ -102,6 +102,7 @@
             });
             });
     </script>
+    @yield('script')
 </body>
 
 </html>

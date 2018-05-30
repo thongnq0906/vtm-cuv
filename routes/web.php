@@ -104,7 +104,15 @@ Route::group(['middleware' => 'adminLogin'], function() {
 });
 
 Route::get('/', 'Frontend\HomeController@index')->name('index');
-Route::get('/product', 'Frontend\ProductController@cateProductLv1')->name('cate_product_lv1');
-Route::get('/{id}', 'Frontend\ProductController@product')->name('product');
-Route::get('/sanpham/{id}', 'Frontend\ProductController@detailProduct')->name('detail_product');
-
+Route::group(['prefix' => 'product'], function() {
+    Route::get('/', 'Frontend\ProductController@cateProductLv1')->name('cate_product_lv1');
+    Route::get('/{id}', 'Frontend\ProductController@product')->name('product');
+    Route::get('/detail/{id}', 'Frontend\ProductController@detailProduct')->name('detail_product');
+});
+Route::group(['prefix' => 'post'], function() {
+    Route::get('/{id}', 'Frontend\PostController@listPost')->name('list_post');
+    Route::get('/detail/{id}', 'Frontend\PostController@detail')->name('detail');
+});
+Route::get('/intro', 'Frontend\IntroController@index')->name('intro');
+Route::get('/contact', 'Frontend\ContactController@index')->name('contact');
+Route::post('/contact', 'Frontend\ContactController@postContact')->name('post_contact');

@@ -37,6 +37,8 @@
                                                     <th>Tên</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
+                                                    <th>Tiêu đề</th>
+                                                    <th>Nội dung</th>
                                                     <th>Ngày gửi</th>
                                                     <th>Xử lý</th>
                                                 </tr>
@@ -44,9 +46,12 @@
                                             <tbody>
                                                 @foreach($contact as $key => $c)
                                                 <tr>
+                                                    <td>{{ $key + 1 }}</td>
                                                     <td>{{ $c->name }}</td>
                                                     <td>{{ $c->email }}</td>
                                                     <td>{{ $c->phone }}</td>
+                                                    <td>{{ $c->title }}</td>
+                                                    <td>{{ $c->content }}</td>
                                                     <td>{{ $c->created_at }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.contact.destroy', $c->id) }}"

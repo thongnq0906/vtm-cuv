@@ -31,10 +31,10 @@
                             <p class="name">{{ $p->name }}</p>
                             <div class="skype">
                                 <a href="mailto:{{ $p->email }}">
-                                    <img style="    width: 32px;" class="mail" src="http://cuv.com.vn/images/mail.png">
+                                    <img style="    width: 32px;" class="mail" src="{{ asset('images/mail.png') }}">
                                 </a>
                                 <a href="skype:?chat">
-                                    <img class="skype" src="http://cuv.com.vn/images/img_sky.gif" align="absmiddle"></a>
+                                    <img class="skype" src="{{ asset('images/img_sky.gif') }}" align="absmiddle"></a>
                                 </div>
                                 <p class="phone text-left">{{ $p->phone }}</p>
                             </div>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="menu" style="border:1px solid #e5e5e5;margin-bottom:30px;padding-bottom:15px;">
-            <div id="tieude"><label>THỐNG KÊ TRUY CẬP</label>
+            {{-- <div id="tieude"><label>THỐNG KÊ TRUY CẬP</label>
             </div>
             <div style="text-align:left;color:#333;padding-left: 3px;
             font-size: 12px;padding-top:10px;
@@ -96,7 +96,7 @@
                     <span>105</span></p>
                 <p><img style="  padding-right: 11px;" src="http://cuv.com.vn/images/icon_total.png"> Tổng số lượt truy cập :
                     <span>15083</span></p>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
