@@ -3,24 +3,21 @@
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
+        <h1>Giới thiệu</h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i>Trang chủ</li>
+            <li>Quản lý Giới thiệu</li>
+            <li class="active">Danh mục</li>
+        </ol>
+        <a href="{{ route('admin.intro.create') }}" class="btn btn-primary">
+            <i class=" fa fa-fw fa-plus"></i>
+            Thêm mới
+        </a>
+    </section>
+    <section class="content-header">
         <div class="static-content-wrapper">
             <div class="static-content">
                 <div class="page-content">
-                    <div class="page-heading">
-                        <h1>Giới thiệu</h1>
-                        <div class="options">
-                            <div class="btn-toolbar">
-                                <a href="{{ route('admin.intro.create') }}" class="btn btn-default">
-                                    <i class=" fa fa-fw fa-plus"></i>
-                                    Thêm mới
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <ol class="breadcrumb">
-                        <li>Trang chủ</li>
-                        <li>Quản lý giới thiệu</li>
-                    </ol>
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{ Session::get('success') }}</div>
                     @endif
@@ -37,8 +34,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>STT</th>
-                                                    <th>Ảnh</th>
-                                                    <th>Tiêu đề</th>
+                                                    <th>Tên</th>
                                                     <th>Trạng thái</th>
                                                     <th>Cập nhật</th>
                                                     <th>Xử lý</th>
@@ -48,20 +44,16 @@
                                                 @foreach($intro as $key => $c)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>
-                                                        <img src="{{ asset($c->image) }}"
-                                                        style="height: 60px; width: 60px;">
-                                                    </td>
                                                     <td>{{ $c->name }}</td>
                                                     <td>
                                                         @if($c->status == 1)
-                                                            <button type="button" class="btn btn-danger .btn-sm">
+                                                            <p class="label label-success">
                                                                 Hiện
-                                                            </button>
+                                                            </p>
                                                         @else
-                                                            <button type="button" class="btn btn .btn-sm">
-                                                                &nbsp;&nbsp;Ẩn &nbsp;
-                                                            </button>
+                                                            <p class="label label-danger">
+                                                                Ẩn
+                                                            </p>
                                                         @endif
                                                     </td>
                                                     <td>{{ $c->updated_at }}</td>

@@ -2,25 +2,22 @@
 @section('title', 'Quản lý admin')
 @section('content')
 <div class="content-wrapper">
+    <section class="content-header">
+        <h1>Admin</h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i>Trang chủ</li>
+            <li>Quản lý Admin</li>
+            <li class="active">Danh mục</li>
+        </ol>
+        <a href="{{ route('admin.administrator.create') }}" class="btn btn-primary">
+            <i class=" fa fa-fw fa-plus"></i>
+            Thêm mới
+        </a>
+    </section>
 	<section class="content-header">
 	  	<div class="static-content-wrapper">
 		    <div class="static-content">
 		        <div class="page-content">
-		            <div class="page-heading">
-		                <h1>Admin</h1>
-		                <div class="options">
-		                    <div class="btn-toolbar">
-		                        <a href="{{ route('admin.administrator.create') }}" class="btn btn-default">
-		                        	<i class=" fa fa-fw fa-plus"></i>
-		                        	Thêm mới
-		                        </a>
-		                    </div>
-		                </div>
-		            </div>
-		            <ol class="breadcrumb">
-		                <li>Trang chủ</li>
-		                <li>Quản lý admin</li>
-		            </ol>
 		            @if(Session::has('success'))
 		                <div class="alert alert-success">{{ Session::get('success') }}</div>
 		            @endif
@@ -29,7 +26,6 @@
 		                    <div class="col-xs-12 col-sm-12 col-lg-12">
 		                        <div class="box">
                                     <div class="box-header">
-                                        <h3 class="box-title">Data Table With Full Features</h3>
                                     </div><!-- /.box-header -->
                                     <div class="box-body">
 		                                <table id="example1" class="table table-bordered table-striped">
@@ -38,7 +34,6 @@
 		                                            <th>STT</th>
                                                     <th>Tên</th>
 		                                            <th>Email</th>
-		                                            <th>Trạng thái</th>
 		                                            <th>Cập nhật</th>
 		                                            <th>Xử lý</th>
 		                                        </tr>
@@ -49,17 +44,6 @@
 		                                            <td>{{ $key + 1 }}</td>
                                                     <td>{{ $c->name }}</td>
 		                                            <td>{{ $c->email }}</td>
-		                                            <td>
-		                                            	@if($c->status == 1)
-															<button type="button" class="btn btn-danger .btn-sm">
-																Hiện
-															</button>
-		                                            	@else
-															<button type="button" class="btn btn .btn-sm">
-																&nbsp;&nbsp;Ẩn &nbsp;
-															</button>
-		                                            	@endif
-		                                            </td>
 		                                            <td>{{ $c->updated_at }}</td>
 		                                            <td>
 		                                                <a href="{{ route('admin.administrator.destroy', $c->id) }}"
@@ -71,16 +55,6 @@
 		                                        </tr>
 		                                        @endforeach
 		                                    </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>STT</th>
-                                                    <th>Tên</th>
-                                                    <th>Email</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Cập nhật</th>
-                                                    <th>Xử lý</th>
-                                                </tr>
-                                            </tfoot>
 		                                </table>
                                         </div>
 		                            </div>
@@ -94,7 +68,7 @@
 	</section>
 </div><!-- /.content-wrapper -->
 @endsection
-@section('script')
+{{-- @section('script')
 <script type="text/javascript">
         $(function () {
             $("#example1").DataTable();
@@ -108,4 +82,4 @@
             // });
         });
     </script>
-@endsection
+@endsection --}}

@@ -3,24 +3,21 @@
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
+        <h1>Hỗ trợ</h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i>Trang chủ</li>
+            <li>Quản lý Hỗ trợ</li>
+            <li class="active">Danh mục</li>
+        </ol>
+        <a href="{{ route('admin.support.create') }}" class="btn btn-primary">
+            <i class=" fa fa-fw fa-plus"></i>
+            Thêm mới
+        </a>
+    </section>
+    <section class="content-header">
         <div class="static-content-wrapper">
             <div class="static-content">
                 <div class="page-content">
-                    <div class="page-heading">
-                        <h1>Hỗ trợ</h1>
-                        <div class="options">
-                            <div class="btn-toolbar">
-                                <a href="{{ route('admin.support.create') }}" class="btn btn-default">
-                                    <i class=" fa fa-fw fa-plus"></i>
-                                    Thêm mới
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <ol class="breadcrumb">
-                        <li>Trang chủ</li>
-                        <li>Quản lý hỗ trợ</li>
-                    </ol>
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{ Session::get('success') }}</div>
                     @endif
@@ -58,13 +55,11 @@
                                                     <td>{{ $c->position }}</td>
                                                     <td>
                                                         @if($c->status == 1)
-                                                            <button type="button" class="btn btn-danger .btn-sm">
-                                                                Hiện
-                                                            </button>
+                                                            <a href="{{ route('support.status.close' ,$c->id) }}"
+                                                                class="label label-success" title="Ẩn">Hiện</a>
                                                         @else
-                                                            <button type="button" class="btn btn .btn-sm">
-                                                                &nbsp;&nbsp;Ẩn &nbsp;
-                                                            </button>
+                                                            <a href="{{ route('support.status.open' ,$c->id) }}"
+                                                                class="label label-danger" title="Hiện">Ẩn</a>
                                                         @endif
                                                     </td>
                                                     <td>{{ $c->updated_at }}</td>

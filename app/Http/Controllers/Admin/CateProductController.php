@@ -105,4 +105,21 @@ class CateProductController extends Controller
 
     	return redirect()->back()->with('success', 'Xóa thành công');
     }
+
+    public function open($id)
+    {
+        $result = Cate_product::where('id', $id)->first();
+        $result->status = 1;
+        $result->save();
+
+        return back();
+    }
+
+    public function close($id)
+    {
+        $result = Cate_product::where('id', $id)->first();
+        $result->status = 0;
+        $result->save();
+        return back();
+    }
 }
