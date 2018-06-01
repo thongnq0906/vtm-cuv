@@ -3,25 +3,21 @@
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
+        <h1>Slide</h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i>Trang chủ</li>
+            <li>Quản lý Slide</li>
+            <li class="active">Danh mục</li>
+        </ol>
+        <a href="{{ route('admin.slide.create') }}" class="btn btn-primary">
+            <i class=" fa fa-fw fa-plus"></i>
+            Thêm mới
+        </a>
+    </section>
+    <section class="content-header">
         <div class="static-content-wrapper">
             <div class="static-content">
                 <div class="page-content">
-                    <div class="page-heading">
-                        <h1>Slide</h1>
-                        <div class="options">
-                            <div class="btn-toolbar">
-                                <a href="{{ route('admin.slide.create') }}" class="btn btn-default">
-                                    <i class=" fa fa-fw fa-plus"></i>
-                                    Thêm mới
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <ol class="breadcrumb">
-                        <li>Trang chủ</li>
-                        <li>Quản lý Slide</li>
-                        <li class="active">Slide</li>
-                    </ol>
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{ Session::get('success') }}</div>
                     @endif
@@ -39,7 +35,6 @@
                                                 <tr>
                                                     <th>STT</th>
                                                     <th>Ảnh</th>
-                                                    <th>Tên</th>
                                                     <th>Xuất hiện</th>
                                                     <th>Vị trí</th>
                                                     <th>Trạng thái</th>
@@ -52,9 +47,8 @@
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td style="width: 30%;">
-                                                        <img src="{{ asset($c->image) }}" style="width: 90%;">
+                                                        <img src="{{ asset($c->image) }}" style="height: 60px; width: 120px;">
                                                     </td>
-                                                    <td>{{ $c->name }}</td>
                                                     <td>
                                                         @if($c->dislay == 1)
                                                             {{ "Slide show" }}
@@ -67,13 +61,11 @@
                                                     <td>{{ $c->position }}</td>
                                                     <td>
                                                         @if($c->status == 1)
-                                                            <button type="button" class="btn btn-danger .btn-sm">
-                                                                Hiện
-                                                            </button>
+                                                            <a href="{{ route('slide.status.close' ,$c->id) }}"
+                                                                class="label label-success" title="Ẩn">Hiện</a>
                                                         @else
-                                                            <button type="button" class="btn btn .btn-sm">
-                                                                &nbsp;&nbsp;Ẩn &nbsp;
-                                                            </button>
+                                                            <a href="{{ route('slide.status.open' ,$c->id) }}"
+                                                                class="label label-danger" title="Hiện">Ẩn</a>
                                                         @endif
                                                     </td>
                                                     <td>{{ $c->updated_at }}</td>

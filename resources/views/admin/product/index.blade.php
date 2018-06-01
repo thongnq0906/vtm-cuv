@@ -29,6 +29,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select name="cate_product" class="form-control" id="target">
+                                        <option value="0">Tất cả danh mục</option>
                                         <?php  menu($data);?>
                                     </select>
                                 </div>
@@ -43,71 +44,97 @@
                             <div class="col-xs-12 col-sm-12 col-lg-12">
                                 <div class="box">
                                     <div class="box-body">
-                                        <table id="example2" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>STT</th>
-                                                    <th>Ảnh</th>
-                                                    <th>Tên sản phẩm</th>
-                                                    <th>Giá</th>
-                                                    <th>Danh mục</th>
-                                                    <th>Giới thiệu</th>
-                                                    <th>Sản phẩm trang chủ</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Cập nhật</th>
-                                                    <th>Xử lý</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($product as $key => $c)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>
-                                                        <img src="{{ asset($c->image) }}"
-                                                        style="height: 60px; width: 60px;">
-                                                    </td>
-                                                    <td>{{ $c->name }}</td>
-                                                    <td>{{ $c->price }}</td>
-                                                    <td>{{ $c->Cate_product->name }}</td>
-                                                    <td>{{ $c->title }}</td>
-                                                    <td>{{ $c->is_home }}</td>
-                                                    <td>
-                                                        @if($c->status == 1)
-                                                            <span class="label label-success">Hiện</span>
-                                                        @else
-                                                            <span class="label label-danger">Ẩn</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $c->updated_at }}</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.product.update', $c->slug)}}">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </a>
-                                                        <a href="{{ route('admin.product.destroy', $c->id) }}"
-                                                            type="button"
-                                                            onclick="return confirm_delete('Bạn có muốn xóa không ?')">
-                                                            <i class="fa fa-times-circle"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
+                                        <form method="post" action="{{ route('checkbox') }}">
+                                            {{ csrf_field() }}
+                                            <table id="example2" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input type="checkbox" class="checkall" name="checkall" /></th>
+                                                        <th>STT</th>
+                                                        <th>Ảnh</th>
+                                                        <th>Tên sản phẩm</th>
+                                                        <th>Giá</th>
+                                                        <th>Danh mục</th>
+                                                        <th>Giới thiệu</th>
+                                                        <th>Sản phẩm trang chủ</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Cập nhật</th>
+                                                        <th>Xử lý</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($product as $key => $c)
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="checkbox[]" class="checkbox"
+                                                            value="{{ $c->id }}">
+                                                        </td>
+                                                        <td>{{ $key + 1 }}</td>
+                                                        <td>
+                                                            <img src="{{ asset($c->image) }}"
+                                                            style="height: 60px; width: 60px;">
+                                                        </td>
+                                                        <td>{{ $c->name }}</td>
+                                                        <td>{{ $c->price }}</td>
+                                                        <td>{{ $c->Cate_product->name }}</td>
+                                                        <td>{{ $c->title }}</td>
+                                                        <td>
+                                                            @if($c->is_home == 1)
+                                                                <a href="{{ route('product.is_home.close' ,$c->id) }}"
+                                                                    class="label label-success" title="Ẩn">Có</a>
+                                                            @else
+                                                                <a href="{{ route('product.is_home.open' ,$c->id) }}"
+                                                                    class="label label-danger" title="Hiện">Không</a>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if($c->status == 1)
+                                                                <a href="{{ route('product.status.close' ,$c->id) }}"
+                                                                    class="label label-success" title="Ẩn">Hiện</a>
+                                                            @else
+                                                                <a href="{{ route('product.status.open' ,$c->id) }}"
+                                                                    class="label label-danger" title="Hiện">Ẩn</a>
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $c->updated_at }}</td>
+                                                        <td>
+                                                            <a href="{{ route('admin.product.update', $c->slug)}}">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                            <a href="{{ route('admin.product.destroy', $c->id) }}"
+                                                                type="button"
+                                                                onclick="return confirm_delete('Bạn có muốn xóa không ?')">
+                                                                <i class="fa fa-times-circle"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
 
-                                            <tfoot>
-                                                <tr>
-                                                    <th>STT</th>
-                                                    <th>Ảnh</th>
-                                                    <th>Tên sản phẩm</th>
-                                                    <th>Giá</th>
-                                                    <th>Danh mục</th>
-                                                    <th>Giới thiệu</th>
-                                                    <th>Sản phẩm trang chủ</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Cập nhật</th>
-                                                    <th>Xử lý</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th><input type="checkbox" class="checkall" name="checkall" /></th>
+                                                        <th>STT</th>
+                                                        <th>Ảnh</th>
+                                                        <th>Tên sản phẩm</th>
+                                                        <th>Giá</th>
+                                                        <th>Danh mục</th>
+                                                        <th>Giới thiệu</th>
+                                                        <th>Sản phẩm trang chủ</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Cập nhật</th>
+                                                        <th>Xử lý</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <select class="" name="select_action">
+                                                <option value="0">Lựa chọn</option>
+                                                <option value="1">Xóa</option>
+                                                <option value="2">Hiện</option>
+                                                <option value="3">Ẩn</option>
+                                            </select>
+                                            <button id="delete_all" class="btn-success">Thực hiện</button>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -137,6 +164,30 @@
 <script type="text/javascript">
     $(function () {
         $("#example2").DataTable();
+    });
+</script>
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $(".checkall").change(function(){
+            var checked = $(this).is(':checked');
+            if(checked){
+                $(".checkbox").each(function(){
+                    $(this).prop("checked",true);
+                });
+            }else{
+                $(".checkbox").each(function(){
+                    $(this).prop("checked",false);
+                });
+            }
+        });
+
+        $(".checkbox").click(function(){
+            if($(".checkbox").length == $(".checkbox:checked").length) {
+                $(".checkall").prop("checked", true);
+            } else {
+                $(".checkall").removeAttr("checked");
+            }
+        });
     });
 </script>
 @endsection

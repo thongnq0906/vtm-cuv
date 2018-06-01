@@ -117,6 +117,9 @@ class ProductController extends Controller
     public function search(Request $req)
     {
         $id_cate_product = $req->cate_product;
+        if($id_cate_product == 0){
+            return back();
+        }
         session()->put('id',$id_cate_product);
         $data=Cate_product::select('id','name','parent_id')->get()->toArray();
         $product = Product::orderBy('position','ASC')->where(function($query)
@@ -137,5 +140,89 @@ class ProductController extends Controller
         })->get();
 
         return view('admin.product.search', compact('product', 'data', 'id_cate_product'));
+    }
+
+    public function checkbox(Request $req)
+    {
+        $checkbox = $req->checkbox;
+        if($req->select_action == 1)
+        {
+            $checkbox = $req->checkbox;
+            foreach ($checkbox as $c) {
+                $result = Product::findOrFail($c);
+                if(file_exists($result->image))
+                {
+                    unlink($result->image);
+                }
+                $result->delete();
+            }
+
+            return redirect()->back()->with('success', 'Xóa thành công');
+        }
+        if($req->select_action == 2)
+        {
+            $checkbox = $req->checkbox;
+            foreach ($checkbox as $c) {
+                $result = Product::where('id', $c)->first();
+                $result->status = 1;
+                $result->save();
+            }
+
+            return back()->with('success', 'Thao tác thành công');
+        }
+        if($req->select_action == 3)
+        {
+            $checkbox = $req->checkbox;
+            foreach ($checkbox as $c) {
+                $result = Product::where('id', $c)->first();
+                $result->status = 0;
+                $result->save();
+            }
+
+            return back()->with('success', 'Thao tác thành công');
+        }
+        if($req->select_action == 0)
+        {
+
+            return back()->with('success', 'Chưa chọn thao tác');
+        }
+        if($checkbox == NULL){
+
+            return back()->with('success', 'Bạn chưa chọn cái nào');
+        }
+    }
+
+    public function open($id)
+    {
+        $result = Product::where('id', $id)->first();
+        $result->status = 1;
+        $result->save();
+
+        return back();
+    }
+
+    public function close($id)
+    {
+        $result = Product::where('id', $id)->first();
+        $result->status = 0;
+        $result->save();
+        return back();
+    }
+
+    public function open_home($id)
+    {
+        $result = Product::where('id', $id)->first();
+        $result->is_home = 1;
+        $result->save();
+
+        return back();
+    }
+
+    public function close_home($id)
+    {
+        $result = Product::where('id', $id)->first();
+        $result->is_home = 0;
+        $result->save();
+        return back();
     }
 }

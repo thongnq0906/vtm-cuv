@@ -128,4 +128,72 @@ class PostController extends Controller
 
         return view('admin.post.search', compact('post', 'data', 'id_cate_post'));
     }
+
+    public function checkbox(Request $req)
+    {
+        $checkbox = $req->checkbox;
+        if($req->select_action == 1)
+        {
+            $checkbox = $req->checkbox;
+            foreach ($checkbox as $c) {
+                $result = Post::findOrFail($c);
+                if(file_exists($result->image))
+                {
+                    unlink($result->image);
+                }
+                $result->delete();
+            }
+
+            return redirect()->back()->with('success', 'Xóa thành công');
+        }
+        if($req->select_action == 2)
+        {
+            $checkbox = $req->checkbox;
+            foreach ($checkbox as $c) {
+                $result = Post::where('id', $c)->first();
+                $result->status = 1;
+                $result->save();
+            }
+
+            return back()->with('success', 'Thao tác thành công');
+        }
+
+        if($req->select_action == 3)
+        {
+            $checkbox = $req->checkbox;
+            foreach ($checkbox as $c) {
+                $result = Post::where('id', $c)->first();
+                $result->status = 0;
+                $result->save();
+            }
+
+            return back()->with('success', 'Thao tác thành công');
+        }
+        if($req->select_action == 0)
+        {
+
+            return back()->with('success', 'Chưa chọn thao tác');
+        }
+        if($checkbox == NULL){
+
+            return back()->with('success', 'Bạn chưa chọn cái nào');
+        }
+    }
+
+    public function open($id)
+    {
+        $result = Post::where('id', $id)->first();
+        $result->status = 1;
+        $result->save();
+
+        return back();
+    }
+
+    public function close($id)
+    {
+        $result = Post::where('id', $id)->first();
+        $result->status = 0;
+        $result->save();
+        return back();
+    }
 }

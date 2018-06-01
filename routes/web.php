@@ -25,6 +25,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{slug}', 'Admin\CateProductController@update')->name('admin.cate_product.update');
             Route::post('/update/{slug}', 'Admin\CateProductController@postUpdate')->name('admin.cate_product.postUpdate');
             Route::get('/destroy/{id}', 'Admin\CateProductController@destroy')->name('admin.cate_product.destroy');
+            Route::get('/status/open/{id}', 'Admin\CateProductController@open')->name('cate_product.status.open');
+            Route::get('/status/close/{id}', 'Admin\CateProductController@close')->name('cate_product.status.close');
         });
         Route::group(['prefix' => 'product'], function() {
             Route::get('/', 'Admin\ProductController@index')->name('admin.product.index');
@@ -34,6 +36,11 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::post('/update/{slug}', 'Admin\ProductController@postUpdate')->name('admin.product.postUpdate');
             Route::get('/destroy/{id}', 'Admin\ProductController@destroy')->name('admin.product.destroy');
             Route::get('/search', 'Admin\ProductController@search')->name('admin.product.search');
+            Route::post('/checkbox', 'Admin\ProductController@checkbox')->name('checkbox');
+            Route::get('/status/open/{id}', 'Admin\ProductController@open')->name('product.status.open');
+            Route::get('/status/close/{id}', 'Admin\ProductController@close')->name('product.status.close');
+            Route::get('/is_home/open/{id}', 'Admin\ProductController@open_home')->name('product.is_home.open');
+            Route::get('/is_home/close/{id}', 'Admin\ProductController@close_home')->name('product.is_home.close');
         });
         Route::group(['prefix' => 'cate_post'], function() {
             Route::get('/', 'Admin\CatePostController@index')->name('admin.cate_post.home');
@@ -42,6 +49,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{slug}', 'Admin\CatePostController@update')->name('admin.cate_post.update');
             Route::post('/update/{slug}', 'Admin\CatePostController@postUpdate')->name('admin.cate_post.postUpdate');
             Route::get('/destroy/{id}', 'Admin\CatePostController@destroy')->name('admin.cate_post.destroy');
+            Route::get('/status/open/{id}', 'Admin\CatePostController@open')->name('cate_post.status.open');
+            Route::get('/status/close/{id}', 'Admin\CatePostController@close')->name('cate_post.status.close');
         });
         Route::group(['prefix' => 'post'], function() {
             Route::get('/', 'Admin\PostController@index')->name('admin.post.index');
@@ -51,6 +60,9 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::post('/update/{slug}', 'Admin\PostController@postUpdate')->name('admin.post.postUpdate');
             Route::get('/destroy/{id}', 'Admin\PostController@destroy')->name('admin.post.destroy');
             Route::get('/search', 'Admin\PostController@search')->name('admin.post.search');
+            Route::post('/checkbox', 'Admin\PostController@checkbox')->name('post.checkbox');
+            Route::get('/status/open/{id}', 'Admin\PostController@open')->name('post.status.open');
+            Route::get('/status/close/{id}', 'Admin\PostController@close')->name('post.status.close');
         });
         Route::group(['prefix' => 'intro'], function() {
             Route::get('/', 'Admin\IntroController@index')->name('admin.intro.index');
@@ -67,6 +79,9 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{id}', 'Admin\SupportController@update')->name('admin.support.update');
             Route::post('/update/{id}', 'Admin\SupportController@postUpdate')->name('admin.support.postUpdate');
             Route::get('/destroy/{id}', 'Admin\SupportController@destroy')->name('admin.support.destroy');
+            Route::get('/status/open/{id}', 'Admin\SupportController@open')->name('support.status.open');
+            Route::get('/status/close/{id}', 'Admin\SupportController@close')->name('support.status.close');
+
         });
         Route::group(['prefix' => 'banner'], function() {
             Route::get('/', 'Admin\BannerController@index')->name('admin.banner.index');
@@ -75,6 +90,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{id}', 'Admin\BannerController@update')->name('admin.banner.update');
             Route::post('/update/{id}', 'Admin\BannerController@postUpdate')->name('admin.banner.postUpdate');
             Route::get('/destroy/{id}', 'Admin\BannerController@destroy')->name('admin.banner.destroy');
+            Route::get('/status/open/{id}', 'Admin\BannerController@open')->name('banner.status.open');
+            Route::get('/status/close/{id}', 'Admin\BannerController@close')->name('banner.status.close');
         });
         Route::group(['prefix' => 'contact'], function() {
             Route::get('/', 'Admin\ContactController@index')->name('admin.contact.index');
@@ -87,6 +104,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{id}', 'Admin\SlideController@update')->name('admin.slide.update');
             Route::post('/update/{id}', 'Admin\SlideController@postUpdate')->name('admin.slide.postUpdate');
             Route::get('/destroy/{id}', 'Admin\SlideController@destroy')->name('admin.slide.destroy');
+            Route::get('/status/open/{id}', 'Admin\SlideController@open')->name('slide.status.open');
+            Route::get('/status/close/{id}', 'Admin\SlideController@close')->name('slide.status.close');
         });
         Route::group(['prefix' => 'cate_slide'], function() {
             Route::get('/', 'Admin\CateSlideController@index')->name('admin.cate_slide.home');

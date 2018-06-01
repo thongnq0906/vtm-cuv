@@ -51,9 +51,9 @@
                                                             <td>{{ $c->position }}</td>
                                                             <td>
                                                                 @if($c->status == 1)
-                                                                    <span class="label label-success">Hiện</span>
+                                                                    <a href="{{ route('cate_post.status.close' ,$c->id) }}" class="label label-success" title="Ẩn">Hiện</a>
                                                                 @else
-                                                                    <span class="label label-danger">Ẩn</span>
+                                                                    <a href="{{ route('cate_post.status.open' ,$c->id) }}" class="label label-danger" title="Hiện">Ẩn</a>
                                                                 @endif
                                                             </td>
                                                             <td>{{ $c->updated_at }}</td>
