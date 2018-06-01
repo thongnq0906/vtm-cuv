@@ -27,13 +27,12 @@
 		            <div class="container-fluid">
 		                <div class="row">
 		                    <div class="col-xs-12 col-sm-12 col-lg-12">
-		                        <div class="panel panel-default">
-		                            <div class="panel-heading">
-		                                <div class="options">
-		                                </div>
-		                            </div>
-		                            <div class="panel-body" style="overflow-x:auto;">
-		                                <table class="table table-striped table-responsive">
+		                        <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Data Table With Full Features</h3>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+		                                <table id="example1" class="table table-bordered table-striped">
 		                                    <thead>
 		                                        <tr>
 		                                            <th>STT</th>
@@ -72,11 +71,20 @@
 		                                        </tr>
 		                                        @endforeach
 		                                    </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên</th>
+                                                    <th>Email</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Cập nhật</th>
+                                                    <th>Xử lý</th>
+                                                </tr>
+                                            </tfoot>
 		                                </table>
-		                                {{ $administrator->links() }}
+                                        </div>
 		                            </div>
 		                        </div>
-
 		                    </div>
 		                </div>
 		            </div>
@@ -85,4 +93,19 @@
 		</div>
 	</section>
 </div><!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script type="text/javascript">
+        $(function () {
+            $("#example1").DataTable();
+            // $('#example2').DataTable({
+            //     "paging": true,
+            //     "lengthChange": false,
+            //     "searching": false,
+            //     "ordering": true,
+            //     "info": true,
+            //     "autoWidth": false
+            // });
+        });
+    </script>
 @endsection

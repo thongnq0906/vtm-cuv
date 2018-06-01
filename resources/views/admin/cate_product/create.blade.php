@@ -1,25 +1,21 @@
 @extends('admin.partials.master')
-@section('title', 'Thêm sản phẩm')
+@section('title', 'Thêm danh mục')
 @section('content')
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
+    <h1>Thêm danh mục</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i>Trang chủ</li>
+        <li>Quản lý sản phẩm</li>
+        <li class="active">Thêm danh mục</li>
+    </ol>
+
+</section>
+<section class="content-header">
     <div class="static-content-wrapper">
         <div class="static-content">
             <div class="page-content">
-                <div class="page-heading">
-                    <h1>Thêm danh mục sản phẩm</h1>
-                    <div class="options">
-                        <div class="btn-toolbar">
-                        </div>
-                    </div>
-                </div>
-                <ol class="breadcrumb">
-                    <li>Trang chủ</li>
-                    <li>Quản lý sản phẩm</li>
-                    <li>Danh mục</li>
-                    <li class="active">Thêm</li>
-                </ol>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">

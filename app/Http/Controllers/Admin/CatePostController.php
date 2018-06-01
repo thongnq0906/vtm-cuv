@@ -13,7 +13,7 @@ class CatePostController extends Controller
 {
     public function index()
     {
-        $cate_post = Cate_post::paginate(5);
+        $cate_post = Cate_post::all();
 
         return view('admin/cate_post/index', compact('cate_post'));
     }

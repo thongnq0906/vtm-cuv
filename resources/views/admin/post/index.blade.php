@@ -3,28 +3,37 @@
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
+        <h1>Bài viết</h1>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i>Trang chủ</li>
+            <li>Quản lý Bài viết</li>
+            <li class="active">Bài viết</li>
+        </ol>
+    </section>
+    <section class="content-header">
         <div class="static-content-wrapper">
             <div class="static-content">
                 <div class="page-content">
-                    <div class="page-heading">
-                        <h1>Bài viết</h1>
-                        <div class="options">
-                            <div class="btn-toolbar">
-                                <a href="{{ route('admin.post.create') }}" class="btn btn-default">
-                                    <i class=" fa fa-fw fa-plus"></i>
-                                    Thêm mới
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <ol class="breadcrumb">
-                        <li>Trang chủ</li>
-                        <li>Quản lý bài viết</li>
-                        <li class="active">Bài viết</li>
-                    </ol>
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{ Session::get('success') }}</div>
                     @endif
+                    <div class="search">
+                        <form class="" method="get" enctype="multipart/form-data" action="{{ route('admin.post.search') }}">
+                        {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-3">
+                                    <select name="cate_post" class="form-control" id="target">
+                                        <?php  menu($data);?>
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn-primary btn">Tìm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -34,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="panel-body" style="overflow-x:auto;">
-                                        <table class="table table-striped table-responsive">
+                                        <table id="datatable_post" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>STT</th>
@@ -62,13 +71,9 @@
                                                     <td>{{ $c->is_home }}</td>
                                                     <td>
                                                         @if($c->status == 1)
-                                                            <button type="button" class="btn btn-danger .btn-sm">
-                                                                Hiện
-                                                            </button>
+                                                            <span class="label label-success">Hiện</span>
                                                         @else
-                                                            <button type="button" class="btn btn .btn-sm">
-                                                                &nbsp;&nbsp;Ẩn &nbsp;
-                                                            </button>
+                                                            <span class="label label-danger">Ẩn</span>
                                                         @endif
                                                     </td>
                                                     <td>{{ $c->updated_at }}</td>
@@ -86,7 +91,6 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        {{ $post->links() }}
                                     </div>
                                 </div>
 
@@ -98,4 +102,11 @@
         </div>
     </section>
 </div><!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(function () {
+        $("#datatable_post").DataTable();
+    });
+</script>
 @endsection
