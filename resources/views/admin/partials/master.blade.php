@@ -28,6 +28,12 @@
     <link href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- DATA TABLES -->
+    <link href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,6 +43,9 @@
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/switchery.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <link href="{{ asset('sitemapstyler/sitemapstyler.css') }}" rel="stylesheet" type="text/css" media="screen" />
+
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -83,6 +92,21 @@
     <script src="{{ asset('js/adminjs.js') }}" type="text/javascript"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
     <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    {{-- <script src="{{ asset('plugins/jQuery/jQuery-2.1.4.min.js') }}" type="text/javascript"></script> --}}
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <!-- DATA TABES SCRIPT -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('plugins/fastclick/fastclick.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('sitemapstyler/sitemapstyler.js') }}"></script>
+    <!-- AdminLTE App -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+
     @yield('script')
   </body>
 </html>

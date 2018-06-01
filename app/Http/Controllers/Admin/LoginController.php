@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Datatables;
 
 class LoginController extends Controller
 {
@@ -23,7 +24,7 @@ class LoginController extends Controller
     // }
     public function index()
     {
-        $administrator = User::paginate(5);
+        $administrator = User::all();
 
         return view('admin.administrator.index', compact('administrator'));
     }

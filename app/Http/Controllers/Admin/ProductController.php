@@ -9,14 +9,16 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Cate_product;
 use Image;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::paginate(10);
+        $product = Product::all();
+        $data=Cate_product::select('id','name','parent_id')->get()->toArray();
 
-        return view('admin.product.index', compact('product'));
+        return view('admin.product.index', compact('product', 'data'));
     }
 
     public function create()
@@ -108,6 +110,32 @@ class ProductController extends Controller
             unlink($result->image);
         }
         $result->delete();
+
         return redirect()->back()->with('success', 'Xóa thành công');
+    }
+
+    public function search(Request $req)
+    {
+        $id_cate_product = $req->cate_product;
+        session()->put('id',$id_cate_product);
+        $data=Cate_product::select('id','name','parent_id')->get()->toArray();
+        $product = Product::orderBy('position','ASC')->where(function($query)
+        {
+            $pro = $query;
+            $id = session('id');
+            $cate_product = Cate_product::find($id);
+            // dd($id);
+            $pro = $pro->orWhere('cate_product_id',$cate_product->id); // bài viết có id của danh muc cha cấp 1.
+            // dd($pro);
+            $com = Cate_product::where('parent_id',$cate_product->id)->get();//danh mục cha cấp 2.
+
+            foreach ($com as $dt) {
+                $pro = $pro->orWhere('cate_product_id',$dt->id);// bài viết có id của danh muc cha cấp 2.
+            }
+            // dd($pro);
+            session()->forget('id');//xóa session;
+        })->get();
+
+        return view('admin.product.search', compact('product', 'data', 'id_cate_product'));
     }
 }

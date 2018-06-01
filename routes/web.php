@@ -33,6 +33,7 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{slug}', 'Admin\ProductController@update')->name('admin.product.update');
             Route::post('/update/{slug}', 'Admin\ProductController@postUpdate')->name('admin.product.postUpdate');
             Route::get('/destroy/{id}', 'Admin\ProductController@destroy')->name('admin.product.destroy');
+            Route::get('/search', 'Admin\ProductController@search')->name('admin.product.search');
         });
         Route::group(['prefix' => 'cate_post'], function() {
             Route::get('/', 'Admin\CatePostController@index')->name('admin.cate_post.home');
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{slug}', 'Admin\PostController@update')->name('admin.post.update');
             Route::post('/update/{slug}', 'Admin\PostController@postUpdate')->name('admin.post.postUpdate');
             Route::get('/destroy/{id}', 'Admin\PostController@destroy')->name('admin.post.destroy');
+            Route::get('/search', 'Admin\PostController@search')->name('admin.post.search');
         });
         Route::group(['prefix' => 'intro'], function() {
             Route::get('/', 'Admin\IntroController@index')->name('admin.intro.index');
@@ -96,6 +98,7 @@ Route::group(['middleware' => 'adminLogin'], function() {
         });
         Route::group(['prefix' => 'administrator'], function() {
             Route::get('/', 'Admin\LoginController@index')->name('admin.administrator.home');
+            Route::get('/anyData', 'Admin\LoginController@anyData')->name('anyData');
             Route::get('/create', 'Admin\LoginController@create')->name('admin.administrator.create');
             Route::post('/create', 'Admin\LoginController@postCreate')->name('admin.administrator.createPost');
             Route::get('/destroy/{id}', 'Admin\LoginController@destroy')->name('admin.administrator.destroy');

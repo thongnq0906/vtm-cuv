@@ -14,9 +14,10 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post = Post::paginate(10);
+        $post = Post::all();
+        $data=Cate_post::select('id','name','parent_id')->get()->toArray();
 
-        return view('admin.post.index', compact('post'));
+        return view('admin.post.index', compact('post', 'data'));
     }
 
     public function create()
@@ -101,5 +102,30 @@ class PostController extends Controller
         }
         $result->delete();
         return redirect()->back()->with('success', 'Xóa thành công');
+    }
+
+    public function search(Request $req)
+    {
+        $id_cate_post = $req->cate_post;
+        session()->put('id',$id_cate_post);
+        $data=Cate_post::select('id','name','parent_id')->get()->toArray();
+        $post = Post::orderBy('position','ASC')->where(function($query)
+        {
+            $pro = $query;
+            $id = session('id');
+            $cate_post = Cate_post::find($id);
+            // dd($id);
+            $pro = $pro->orWhere('cate_post_id',$cate_post->id); // bài viết có id của danh muc cha cấp 1.
+            // dd($pro);
+            $com = Cate_post::where('parent_id',$cate_post->id)->get();//danh mục cha cấp 2.
+
+            foreach ($com as $dt) {
+                $pro = $pro->orWhere('cate_post_id',$dt->id);// bài viết có id của danh muc cha cấp 2.
+            }
+            // dd($pro);
+            session()->forget('id');//xóa session;
+        })->get();
+
+        return view('admin.post.search', compact('post', 'data', 'id_cate_post'));
     }
 }
