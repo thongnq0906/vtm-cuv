@@ -8,7 +8,12 @@
             <div class="r-content">
                 <div class="col-xs-12 col-sm-12 col-lg-9" style="    padding-right: 0;">
                     <h2 id="r-tieude1">Giới thiệu</h2>
-                    <?php echo(html_entity_decode($intro->description)) ?>
+                    <?php
+                        if(isset($intro))
+                        {
+                            echo(html_entity_decode($intro->description));
+                        }
+                    ?>
                 </div>
             </div>
         </div>

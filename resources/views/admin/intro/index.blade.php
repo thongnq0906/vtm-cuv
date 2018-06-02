@@ -47,13 +47,9 @@
                                                     <td>{{ $c->name }}</td>
                                                     <td>
                                                         @if($c->status == 1)
-                                                            <p class="label label-success">
-                                                                Hiện
-                                                            </p>
+                                                            <a href="{{ route('intro.status.close' ,$c->id) }}" class="label label-success" title="Ẩn">Hiện</a>
                                                         @else
-                                                            <p class="label label-danger">
-                                                                Ẩn
-                                                            </p>
+                                                            <a href="{{ route('intro.status.open' ,$c->id) }}" class="label label-danger" title="Hiện">Ẩn</a>
                                                         @endif
                                                     </td>
                                                     <td>{{ $c->updated_at }}</td>

@@ -60,20 +60,6 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="form-group{{ $errors->has('title') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Miêu tả: </label>
-                                                <div class="col-md-8">
-                                                        <textarea class="form-control" placeholder="Giới thiệu"
-                                                        name="title" id="editor2">{{ $intro->title }}</textarea>
-                                                    @if($errors->has('title'))
-                                                        <strong>
-                                                            <span class="help-block">
-                                                                {{ $errors->first('title') }}
-                                                            </span>
-                                                        </strong>
-                                                    @endif
-                                                </div>
-                                            </div>
                                             <div class="form-group{{ $errors->has('description') ? 'has-error' : '' }}">
                                                 <label class="col-md-3 control-label">Nội dung: </label>
                                                 <div class="col-md-8">
@@ -85,19 +71,6 @@
                                                         <strong>
                                                             <span class="help-block">
                                                                 {{ $errors->first('description') }}
-                                                            </span>
-                                                        </strong>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group{{ $errors->has('image') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Ảnh bìa: </label>
-                                                <div class="col-md-8">
-                                                        <input type="file" class="form-control" name="image">
-                                                    @if($errors->has('image'))
-                                                        <strong>
-                                                            <span class="help-block">
-                                                                {{ $errors->first('image') }}
                                                             </span>
                                                         </strong>
                                                     @endif
@@ -191,16 +164,6 @@
 @section('script')
 <script>
     CKEDITOR.replace( 'editor1', {
-    filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
-    filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
-    filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
-    filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-    filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-    filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-} );
-</script>
-<script>
-    CKEDITOR.replace( 'editor2',{
     filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
     filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
     filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',

@@ -57,6 +57,18 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            <div class="form-group{{ $errors->has('position') ? 'has-error' : '' }}">
+                                                <label class="col-md-3 control-label">Vị trí: </label>
+                                                <div class="col-md-8">
+                                                        <input type="text" class="form-control" placeholder="Vị trí"
+                                                        name="position" value="{{ $cate_product->position }}">
+                                                    @if($errors->has('position'))
+                                                        <strong>
+                                                            <span class="help-block">{{ $errors->first('position') }}</span>
+                                                        </strong>
+                                                    @endif
+                                                </div>
+                                            </div>
                                             <div class="form-group{{ $errors->has('image') ? 'has-error' : '' }}">
                                                 <label class="col-md-3 control-label">Ảnh bìa: </label>
                                                 <div class="col-md-8">

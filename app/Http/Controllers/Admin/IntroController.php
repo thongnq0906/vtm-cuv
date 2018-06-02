@@ -20,6 +20,7 @@ class IntroController extends Controller
 
     public function create()
     {
+
         return view('admin.intro.create');
     }
 
@@ -30,21 +31,10 @@ class IntroController extends Controller
         $intro->slug = str_slug($req['name']);
         $intro->position = $req['position'];
         $intro->status = (is_null($req['status']) ? '0' : '1');
-        $intro->title = $req['title'];
         $intro->description = $req['description'];
         $intro->title_seo = $req['title_seo'];
         $intro->meta_key = $req['meta_key'];
         $intro->meta_des = $req['meta_des'];
-        if($req->hasFile('image')){
-            $image = $req->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('photos/'.$filename));
-
-            $intro->image = ('photos/'.$filename);
-
-        } else{
-            $intro->image = ('photos/avatar5.png');
-        }
         $intro->save();
 
         return redirect()->route('admin.intro.index');
@@ -64,20 +54,10 @@ class IntroController extends Controller
         $intro->slug = str_slug($req['name']);
         $intro->position = $req['position'];
         $intro->status = (is_null($req['status']) ? '0' : '1');
-        $intro->title = $req['title'];
         $intro->description = $req['description'];
         $intro->title_seo = $req['title_seo'];
         $intro->meta_key = $req['meta_key'];
         $intro->meta_des = $req['meta_des'];
-        if($req->hasFile('image')){
-            unlink($intro->image);
-            $image = $req->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('photos/'.$filename));
-
-            $intro->image = ('photos/'.$filename);
-
-        }
         $validatedData = $req->validate([
             'name' => 'required|unique:intros,name,' .$intro->id,
             'position' => 'numeric|nullable|min:0|unique:intros,position,' .$intro->id,
@@ -95,6 +75,25 @@ class IntroController extends Controller
             unlink($result->image);
         }
         $result->delete();
+
         return redirect()->back()->with('success', 'Xóa thành công');
+    }
+
+    public function open($id)
+    {
+        $result = Intro::where('id', $id)->first();
+        $result->status = 1;
+        $result->save();
+
+        return back();
+    }
+
+    public function close($id)
+    {
+        $result = Intro::where('id', $id)->first();
+        $result->status = 0;
+        $result->save();
+
+        return back();
     }
 }

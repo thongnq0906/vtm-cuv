@@ -3,10 +3,10 @@
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Danh mục bài viết</h1>
+        <h1>Danh mục sản phẩm</h1>
         <ol class="breadcrumb">
             <li><i class="fa fa-dashboard"></i>Trang chủ</li>
-            <li>Quản lý Bài viết</li>
+            <li>Quản lý sản phẩm</li>
             <li class="active">Danh mục</li>
         </ol>
         <a href="{{ route('admin.cate_product.create') }}" class="btn btn-primary">
@@ -36,6 +36,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>STT</th>
+                                                            <th>Ảnh</th>
                                                             <th>Tên danh mục</th>
                                                             <th>Vị trí</th>
                                                             <th>Trạng thái</th>
@@ -47,6 +48,10 @@
                                                         @foreach($cate_product as $key => $c)
                                                         <tr>
                                                             <td>{{ $key + 1 }}</td>
+                                                            <td>
+                                                                <img src="{{ asset($c->image) }}"
+                                                                style="height: 60px; width: 60px;">
+                                                            </td>
                                                             <td>{{ $c->name }}</td>
                                                             <td>{{ $c->position }}</td>
                                                             <td>

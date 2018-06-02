@@ -43,12 +43,10 @@ class PostController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('images/upload/'.$filename));
 
-            $post->image = ('photos/'.$filename);
+            $post->image = ('images/upload/'.$filename);
 
-        } else{
-            $post->image = ('photos/avatar5.png');
         }
         $post->save();
 
@@ -78,11 +76,14 @@ class PostController extends Controller
         $post->meta_key = $req['meta_key'];
         $post->meta_des = $req['meta_des'];
         if($req->hasFile('image')){
-            unlink($post->image);
+            if(file_exists($post->image))
+            {
+                unlink($post->image);
+            }
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
-            $post->image = ('photos/'.$filename);
+            Image::make($image)->fit(400,225)->save(public_path('images/upload/'.$filename));
+            $post->image = ('images/upload/'.$filename);
         }
         $validatedData = $req->validate([
             'name' => 'required|unique:posts,name,' .$post->id,
@@ -107,6 +108,9 @@ class PostController extends Controller
     public function search(Request $req)
     {
         $id_cate_post = $req->cate_post;
+        if($id_cate_post == 0){
+            return redirect()->route('admin.post.index');
+        }
         session()->put('id',$id_cate_post);
         $data=Cate_post::select('id','name','parent_id')->get()->toArray();
         $post = Post::orderBy('position','ASC')->where(function($query)
@@ -194,6 +198,24 @@ class PostController extends Controller
         $result = Post::where('id', $id)->first();
         $result->status = 0;
         $result->save();
+        return back();
+    }
+
+    public function open_home($id)
+    {
+        $result = Post::where('id', $id)->first();
+        $result->is_home = 1;
+        $result->save();
+
+        return back();
+    }
+
+    public function close_home($id)
+    {
+        $result = Post::where('id', $id)->first();
+        $result->is_home = 0;
+        $result->save();
+
         return back();
     }
 }

@@ -59,43 +59,18 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="form-group{{ $errors->has('title') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Miêu tả: </label>
-                                                <div class="col-md-8">
-                                                        <textarea class="form-control" placeholder="Giới thiệu"
-                                                        name="title" id="editor2">{{ old('title') }}</textarea>
-                                                    @if($errors->has('title'))
-                                                        <strong>
-                                                            <span class="help-block">
-                                                                {{ $errors->first('title') }}
-                                                            </span>
-                                                        </strong>
-                                                    @endif
-                                                </div>
-                                            </div>
                                             <div class="form-group{{ $errors->has('description') ? 'has-error' : '' }}">
                                                 <label class="col-md-3 control-label">Nội dung: </label>
                                                 <div class="col-md-8">
 
                                                         <textarea name="description" class="form-control "
-                                                        id="editor1" value="{{ old('description') }}"></textarea>
+                                                        id="editor1">
+                                                            {{ old('description') }}
+                                                        </textarea>
                                                     @if($errors->has('description'))
                                                         <strong>
                                                             <span class="help-block">
                                                                 {{ $errors->first('description') }}
-                                                            </span>
-                                                        </strong>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group{{ $errors->has('image') ? 'has-error' : '' }}">
-                                                <label class="col-md-3 control-label">Ảnh bìa: </label>
-                                                <div class="col-md-8">
-                                                        <input type="file" class="form-control" name="image">
-                                                    @if($errors->has('image'))
-                                                        <strong>
-                                                            <span class="help-block">
-                                                                {{ $errors->first('image') }}
                                                             </span>
                                                         </strong>
                                                     @endif
