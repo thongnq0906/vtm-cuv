@@ -31,12 +31,10 @@ class BannerController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('photos/'.$filename));
+            Image::make($image)->save(public_path('images/upload/'.$filename));
 
-            $banner->image = ('photos/'.$filename);
+            $banner->image = ('images/upload/'.$filename);
 
-        } else{
-            $banner->image = ('photos/avatar5.png');
         }
         $banner->save();
 
@@ -56,12 +54,14 @@ class BannerController extends Controller
         $banner->name = $req['name'];
         $banner->status = (is_null($req['status']) ? '0' : '1');
         if($req->hasFile('image')){
-            $abc = $banner->image;
-            Storage::delete($abc);
+            if(file_exists($banner->image))
+            {
+                unlink($banner->image);
+            }
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('photos/'.$filename));
-            $banner->image = ('photos/'.$filename);
+            Image::make($image)->save(public_path('images/upload/'.$filename));
+            $banner->image = ('images/upload/'.$filename);
         }
         $banner->save();
 

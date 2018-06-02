@@ -38,12 +38,12 @@ class CatePostController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('images/upload/'.$filename));
 
-            $cate_post->image = ('photos/'.$filename);
+            $cate_post->image = ('images/upload/'.$filename);
 
         } else{
-            $cate_post->image = ('photos/avatar5.png');
+            $cate_post->image = ('images/upload/avatar5.png');
         }
         $cate_post->save();
 
@@ -70,13 +70,15 @@ class CatePostController extends Controller
         $cate_post->status = (is_null($req['status']) ? '0' : '1');
         // dd($req->hasFile('image'));
         if($req->hasFile('image')){
-            $abc = $cate_post->image;
-            Storage::delete($abc);
+            if(file_exists($cate_post->image))
+            {
+                unlink($cate_post->image);
+            }
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('images/upload/'.$filename));
 
-            $cate_post->image = ('photos/'.$filename);
+            $cate_post->image = ('images/upload/'.$filename);
 
         }
         $validatedData = $req->validate([

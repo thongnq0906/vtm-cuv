@@ -8,7 +8,7 @@
             <div class="r-content">
                 <div class="col-xs-12 col-sm-12 col-lg-9" style="    padding-right: 0;">
                     <h2 id="r-tieude1">{{ $detail->name }}</h2>
-                    huhu
+                    <?php echo(html_entity_decode($detail->description)) ?>
                 </div>
             </div>
         </div>

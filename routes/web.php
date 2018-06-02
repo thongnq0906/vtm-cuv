@@ -63,6 +63,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::post('/checkbox', 'Admin\PostController@checkbox')->name('post.checkbox');
             Route::get('/status/open/{id}', 'Admin\PostController@open')->name('post.status.open');
             Route::get('/status/close/{id}', 'Admin\PostController@close')->name('post.status.close');
+            Route::get('/is_home/open/{id}', 'Admin\PostController@open_home')->name('post.is_home.open');
+            Route::get('/is_home/close/{id}', 'Admin\PostController@close_home')->name('post.is_home.close');
         });
         Route::group(['prefix' => 'intro'], function() {
             Route::get('/', 'Admin\IntroController@index')->name('admin.intro.index');
@@ -71,6 +73,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/update/{id}', 'Admin\IntroController@update')->name('admin.intro.update');
             Route::post('/update/{id}', 'Admin\IntroController@postUpdate')->name('admin.intro.postUpdate');
             Route::get('/destroy/{id}', 'Admin\IntroController@destroy')->name('admin.intro.destroy');
+            Route::get('/status/open/{id}', 'Admin\IntroController@open')->name('intro.status.open');
+            Route::get('/status/close/{id}', 'Admin\IntroController@close')->name('intro.status.close');
         });
         Route::group(['prefix' => 'support'], function() {
             Route::get('/', 'Admin\SupportController@index')->name('admin.support.index');

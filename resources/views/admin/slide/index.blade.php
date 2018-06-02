@@ -3,11 +3,11 @@
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Slide</h1>
+        <h1>Quản lý Slide</h1>
         <ol class="breadcrumb">
             <li><i class="fa fa-dashboard"></i>Trang chủ</li>
             <li>Quản lý Slide</li>
-            <li class="active">Danh mục</li>
+            <li class="active">Slide</li>
         </ol>
         <a href="{{ route('admin.slide.create') }}" class="btn btn-primary">
             <i class=" fa fa-fw fa-plus"></i>

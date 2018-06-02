@@ -16,13 +16,13 @@
                             </a>
                         </div>
                         <div class="col-xs-12 col-sm-9 col-lg-9">
-                            <a href="{{ route('detail', $p->id) }}" title="{{ $p->name }}"><h3>{{ $p->name }}</h3>
+                            <a href="{{ route('detail', $p->id) }}" title="{{ $p->name }}">
+                                <h4>{{ $p->name }}</h4>
                             </a>
+                            <p><span style="font-size: 14px;"><strong>{{ $p->title }}</strong></span><br /></p>
                             <p>
-                                <span style="font-size: 14px;"><strong>{{ $p->name }}</strong></span><br />
-                                <span style="font-size: 14px;"><?php echo(html_entity_decode($p->description)) ?></span>
+                                <a id="xemthem" href="{{ route('detail', $p->id) }}" title="{{ $p->name }}">Xem chi tiết</a>
                             </p>
-                                <p><a id="xemthem" href="{{ route('detail', $p->id) }}" title="{{ $p->name }}">Xem chi tiết</a></p>
                         </div>
                     </div>
                     @endforeach

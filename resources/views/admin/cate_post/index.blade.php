@@ -36,6 +36,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>STT</th>
+                                                            <th>Ảnh</th>
                                                             <th>Tên danh mục</th>
                                                             <th>Vị trí</th>
                                                             <th>Trạng thái</th>
@@ -47,6 +48,10 @@
                                                         @foreach($cate_post as $key => $c)
                                                         <tr>
                                                             <td>{{ $key + 1 }}</td>
+                                                            <td>
+                                                                <img src="{{ asset($c->image) }}"
+                                                                style="height: 60px; width: 60px;">
+                                                            </td>
                                                             <td>{{ $c->name }}</td>
                                                             <td>{{ $c->position }}</td>
                                                             <td>

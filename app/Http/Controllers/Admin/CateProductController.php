@@ -13,7 +13,7 @@ class CateProductController extends Controller
 {
     public function index()
     {
-    	$cate_product = Cate_product::paginate(5);
+    	$cate_product = Cate_product::all();
 
     	return view('admin/cate_product/index', compact('cate_product'));
     }
@@ -32,17 +32,15 @@ class CateProductController extends Controller
     	$cate_product->parent_id = $req->parent_id;
     	$cate_product->slug = str_slug($cate_product->name);
     	$cate_product->description = $req['description'];
+        $cate_product->position = $req['position'];
     	$cate_product->status = (is_null($req['status']) ? '0' : '1');
-    	// dd($req->hasFile('image'));
     	if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('images/upload/'.$filename));
 
-            $cate_product->image = ('photos/'.$filename);
+            $cate_product->image = ('images/upload/'.$filename);
 
-        } else{
-            $cate_product->image = ('photos/avatar5.png');
         }
     	$cate_product->save();
 
@@ -65,15 +63,19 @@ class CateProductController extends Controller
     	$cate_product->parent_id = $req->parent_id;
     	$cate_product->slug = str_slug($cate_product->name);
     	$cate_product->description = $req['description'];
+        $cate_product->position = $req['position'];
     	$cate_product->status = (is_null($req['status']) ? '0' : '1');
-    	// dd($req->hasFile('image'));
-    	if($req->hasFile('image')){
-            unlink($cate_product->image);
+    	if($req->hasFile('image'))
+        {
+            if(file_exists($cate_product->image))
+            {
+                unlink($cate_product->image);
+            }
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(400,225)->save(public_path('photos/'.$filename));
+            Image::make($image)->fit(400,225)->save(public_path('images/upload/'.$filename));
 
-            $cate_product->image = ('photos/'.$filename);
+            $cate_product->image = ('images/upload/'.$filename);
 
         }
         $validatedData = $req->validate([

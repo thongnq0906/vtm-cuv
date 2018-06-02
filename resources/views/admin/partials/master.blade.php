@@ -11,7 +11,7 @@
     <link href="{{ asset('dist/css/skins/_all-skins.min.css') }}" rel="stylesheet" type="text/css" />
     {{--     <link href="{{ asset('plugins/iCheck/flat/blue.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/morris/morris.css') }}" rel="stylesheet" type="text/css" /> --}}
-    <link href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" /> --}}
     {{-- <link href="{{ asset('plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" /> --}}
     {{-- <link href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" />
@@ -51,7 +51,9 @@
     <script src="{{ asset('dist/js/demo.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/adminjs.js') }}" type="text/javascript"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    {{-- <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script> --}}
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/decoupled-document/ckeditor.js"></script> --}}
+    <script src="//cdn.ckeditor.com/4.9.2/full/ckeditor.js"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>

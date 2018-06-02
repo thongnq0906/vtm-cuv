@@ -22,9 +22,13 @@
                         {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-8">
+                                    <a href="{{ route('admin.post.create') }}" class="btn btn-primary">
+                                        <i class=" fa fa-fw fa-plus"></i>Thêm mới
+                                    </a>
                                 </div>
                                 <div class="col-md-3">
                                     <select name="cate_post" class="form-control" id="target">
+                                        <option value="0">Tất cả</option>
                                         <?php  menu($data);?>
                                     </select>
                                 </div>
@@ -51,10 +55,9 @@
                                                         <th><input type="checkbox" class="checkall" name="checkall" /></th>
                                                         <th>STT</th>
                                                         <th>Ảnh</th>
-                                                        <th>Tên sản phẩm</th>
+                                                        <th>Tên bài viết</th>
                                                         <th>Danh mục</th>
-                                                        <th>Giới thiệu</th>
-                                                        <th>Sản phẩm trang chủ</th>
+                                                        <th>SP home</th>
                                                         <th>Trạng thái</th>
                                                         <th>Cập nhật</th>
                                                         <th>Xử lý</th>
@@ -73,8 +76,15 @@
                                                         </td>
                                                         <td>{{ $c->name }}</td>
                                                         <td>{{ $c->Cate_post->name }}</td>
-                                                        <td>{{ $c->title }}</td>
-                                                        <td>{{ $c->is_home }}</td>
+                                                        <td>
+                                                            @if($c->is_home == 1)
+                                                                <a href="{{ route('post.is_home.close' ,$c->id) }}"
+                                                                    class="label label-success" title="Ẩn">Có</a>
+                                                            @else
+                                                                <a href="{{ route('post.is_home.open' ,$c->id) }}"
+                                                                    class="label label-danger" title="Hiện">Không</a>
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             @if($c->status == 1)
                                                                 <a href="{{ route('post.status.close' ,$c->id) }}" class="label label-success" title="Ẩn">Hiện</a>
@@ -102,8 +112,7 @@
                                                     <th>Ảnh</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Danh mục</th>
-                                                    <th>Giới thiệu</th>
-                                                    <th>Sản phẩm trang chủ</th>
+                                                    <th>SP home</th>
                                                     <th>Trạng thái</th>
                                                     <th>Cập nhật</th>
                                                     <th>Xử lý</th>

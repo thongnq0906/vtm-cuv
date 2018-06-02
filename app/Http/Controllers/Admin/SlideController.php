@@ -33,12 +33,10 @@ class SlideController extends Controller
         if($req->hasFile('image')){
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('photos/'.$filename));
+            Image::make($image)->save(public_path('images/upload/'.$filename));
 
-            $slide->image = ('photos/'.$filename);
+            $slide->image = ('images/upload/'.$filename);
 
-        } else{
-            $slide->image = ('photos/avatar5.png');
         }
         $slide->save();
 
@@ -60,11 +58,14 @@ class SlideController extends Controller
         $slide->dislay = $req['dislay'];
         $slide->status = (is_null($req['status']) ? '0' : '1');
         if($req->hasFile('image')){
-            unlink($slide->image);
+            if(file_exists($slide->image))
+            {
+                unlink($slide->image);
+            }
             $image = $req->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('photos/'.$filename));
-            $slide->image = ('photos/'.$filename);
+            Image::make($image)->save(public_path('images/upload/'.$filename));
+            $slide->image = ('images/upload/'.$filename);
 
         }
         $validatedData = $req->validate([
