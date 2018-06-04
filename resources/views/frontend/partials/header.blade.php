@@ -20,6 +20,9 @@
                 <img  src="{{ asset('images/english.png') }}"></a>
             </span>
         </div>
+        <div>
+            <p>SL: {{ $count }}  Tổng:{{ $total }}</p>
+        </div>
     </div>
 </div>
 <div class="box-search">

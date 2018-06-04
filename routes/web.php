@@ -18,6 +18,15 @@ Route::group(['middleware' => 'adminLogin'], function() {
     Route::group(['prefix' => 'admin'], function() {
         Route::get('/', function () {return view('admin/index');})->name('admin.index');
         Route::get('/logout', 'Admin\LoginController@logout')->name('admin.logout');
+        Route::group(['prefix' => 'cart'], function() {
+            Route::get('bill', 'Admin\OrderController@order')->name('admin.order');
+            Route::get('bill/{id}', 'Admin\OrderController@bill')->name('admin.bill');
+            Route::get('order/destroy/{id}', 'Admin\OrderController@destroyOrder')->name('admin.destroyOrder');
+            Route::post('postStatus/{id}', 'Admin\OrderController@postStatus')->name('admin.postStatus');
+            Route::post('/checkbox', 'Admin\OrderController@checkbox')->name('admin.cart.checkbox');
+        });
+
+
         Route::group(['prefix' => 'cate_product'], function() {
             Route::get('/', 'Admin\CateProductController@index')->name('admin.cate_product.home');
             Route::get('/create', 'Admin\CateProductController@create')->name('admin.cate_product.create');
@@ -142,3 +151,8 @@ Route::group(['prefix' => 'post'], function() {
 Route::get('/intro', 'Frontend\IntroController@index')->name('intro');
 Route::get('/contact', 'Frontend\ContactController@index')->name('contact');
 Route::post('/contact', 'Frontend\ContactController@postContact')->name('post_contact');
+Route::get('cart', 'Frontend\CartController@index')->name('cart.index');
+Route::get('add-cart/{id}', 'Frontend\CartController@addCart')->name('add-cart');
+Route::get('destroy-cart/{id}', 'Frontend\CartController@destroyCart')->name('destroy_cart');
+Route::get('order', 'Frontend\CartController@order')->name('order');
+Route::post('order', 'Frontend\CartController@postOrder')->name('postOrder');

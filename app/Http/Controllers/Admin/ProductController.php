@@ -145,6 +145,10 @@ class ProductController extends Controller
     public function checkbox(Request $req)
     {
         $checkbox = $req->checkbox;
+        if(!isset($req->checkbox))
+        {
+            return back()->with('success', 'Chưa chọn sản phẩm');
+        }
         if($req->select_action == 1)
         {
             $checkbox = $req->checkbox;

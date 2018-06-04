@@ -13,10 +13,13 @@
                 <h2 id="r-tieude1">{{ $product->name }}</h2>
                 <div class="col-xs-12 col-sm-5 col-lg-5" style="  margin-bottom: 20px;">
                     <div class="border">
-                        <img  style="width:100%;margin-bottom:5px;" id="img_01" src="{{ asset($product->image) }}" data-zoom-image="{{ asset($product->image) }}"/>
+                        <img  style="width:100%;margin-bottom:5px;" id="img_01" src="{{ asset($product->image) }}"
+                        data-zoom-image="{{ asset($product->image) }}"/>
                         <div id="gallery_01">
-                            <a class="active" href="#" data-image="{{ asset($product->image) }}" data-zoom-image="{{ asset($product->image) }}" title="{{ $product->name }}">
-                                <img style="width: auto; height: 51px; margin-bottom: 4px; max-height: 329px;" id="img_01" src="{{ asset($product->image) }}" title="{{ $product->name }}" alt="{{ $product->name }}"/>
+                            <a class="active" href="#" data-image="{{ asset($product->image) }}"
+                                data-zoom-image="{{ asset($product->image) }}" title="{{ $product->name }}">
+                                <img style="width: auto; height: 51px; margin-bottom: 4px; max-height: 329px;" id="img_01"
+                                src="{{ asset($product->image) }}" title="{{ $product->name }}" alt="{{ $product->name }}"/>
                             </a>
                         </div>
                     </div><!--end padding-detail-left-->
