@@ -25,6 +25,7 @@ class Cate_productRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:cate_products,name',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

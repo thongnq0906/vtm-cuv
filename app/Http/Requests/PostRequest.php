@@ -26,6 +26,7 @@ class PostRequest extends FormRequest
         return [
             'name' => 'required|unique:products,name,',
             'position' => 'numeric|min:0|nullable|unique:posts,position,',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
