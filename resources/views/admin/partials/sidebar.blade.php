@@ -78,6 +78,11 @@
                     <i class="fa fa-shopping-cart"></i> <span>Quản lý đơn hàng</span>
                 </a>
             </li>
+            <li class="{{ Request::is('admin/setting') ? 'active' : '' }}">
+                <a href="{{ route('admin.setting') }}">
+                    <i class="glyphicon glyphicon-wrench"></i> <span>Cấu hình</span>
+                </a>
+            </li>
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Cate_postRequest extends FormRequest
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class Cate_postRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,13 @@ class Cate_postRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:cate_posts,name',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'string|max:200',
+            'address' => 'string|max:200',
+            'phone' => 'number|regex:/(0)[0-9]{9,10}/|max:11',
+            'holine' => 'number|regex:/(0)[0-9]{9,10}/|max:11',
+            'title' => 'string|max:200',
+            'facebook' => 'string|max:200',
+            'zalo' => 'string|max:200',
         ];
     }
 }
