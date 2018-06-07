@@ -14,4 +14,9 @@ class Product extends Model
 
         return $this->belongsTo('App\Models\Cate_product', 'cate_product_id', 'id');
     }
+
+    public function BillDetail()
+    {
+        return $this->hasMany(BillDetail::class, 'product_id');
+    }
 }

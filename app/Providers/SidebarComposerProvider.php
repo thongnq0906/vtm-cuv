@@ -15,6 +15,7 @@ class SidebarComposerProvider extends ServiceProvider
     public function boot()
     {
         View::composer('frontend.partials.sidebar', 'App\Http\Composers\SidebarComposer');
+        View::composer('frontend.partials.header', 'App\Http\Composers\HeaderComposer');
     }
 
     /**

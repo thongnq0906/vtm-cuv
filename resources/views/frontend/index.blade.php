@@ -42,6 +42,10 @@
                         <center>
                             <a class="name" title="{{ $p->name }}" href="">{{ $p->name }}</a>
                         </center>
+                        <p style="color: #0d1fa0;text-align: center;">
+                            <a href="{{ route('add-cart', $p->id) }}"><i class="fa fa-cart-plus"></i></a>
+                            <strong>Giá : {{ number_format($p->price) }}</strong>
+                            {{-- <span style="text-decoration: line-through;">200000</span></p> --}}
                         <div class="clear"></div>
                     </div>
                 </div>

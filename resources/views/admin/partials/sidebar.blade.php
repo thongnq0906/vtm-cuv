@@ -43,9 +43,9 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ Request::is('admin/slide*') ? 'active' : '' }}">
-                <a href="{{ route('admin.slide.index') }}">
-                    <i class="fa fa-image"></i> <span>Quản lý slide</span>
+            <li class="{{ Request::is('admin/banner*') ? 'active' : '' }}">
+                <a href="{{ route('admin.banner.index') }}">
+                    <i class="fa fa-file-image-o"></i> <span>Quản lý banner</span>
                 </a>
             </li>
             <li class="{{ Request::is('admin/intro*') ? 'active' : '' }}">
@@ -71,6 +71,11 @@
             <li class="{{ Request::is('admin/administrator*') ? 'active' : '' }}">
                 <a href="{{ route('admin.administrator.home') }}">
                     <i class="glyphicon glyphicon-user"></i> <span>Quản lý administrator</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/cart*') ? 'active' : '' }}">
+                <a href="{{ route('admin.order') }}">
+                    <i class="fa fa-shopping-cart"></i> <span>Quản lý đơn hàng</span>
                 </a>
             </li>
             <li class="header">LABELS</li>
