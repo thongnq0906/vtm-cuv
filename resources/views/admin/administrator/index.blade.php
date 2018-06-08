@@ -46,6 +46,9 @@
 		                                            <td>{{ $c->email }}</td>
 		                                            <td>{{ $c->updated_at }}</td>
 		                                            <td>
+                                                        <a href="{{ route('admin.administrator.update', $c->id)}}">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
 		                                                <a href="{{ route('admin.administrator.destroy', $c->id) }}"
                                                             type="button"
 		                                                	onclick="return confirm_delete('Bạn có muốn xóa không ?')">

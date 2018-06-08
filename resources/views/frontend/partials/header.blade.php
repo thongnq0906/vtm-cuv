@@ -21,7 +21,7 @@
             </span>
         </div>
         <div>
-            <p>SL: {{ $count }}  Tổng:{{ $total }}</p>
+            <a href="{{ route('cart.index') }}">SL: {{ $count }}  Tổng:{{ $total }}</a>
         </div>
     </div>
 </div>
