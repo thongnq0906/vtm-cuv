@@ -24,7 +24,7 @@
                                     <th class="a-center" rowspan="1">&nbsp;</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            {{-- <tfoot>
                                 <tr class="first last">
                                     <td class="a-right last" colspan="50">
                                         <button onclick="setLocation('#')" class="button btn-continue"
@@ -41,7 +41,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                            </tfoot>
+                            </tfoot> --}}
                             <tbody>
                                 @foreach($content as $c)
                                     <tr class="first odd">
@@ -65,8 +65,7 @@
                                             </span>
                                         </td>
                                         <td class="a-center movewishlist">
-                                            <input maxlength="2" class="input-text qty" title="Qty"
-                                            size="4" value="{{ $c->qty }}" name="">
+                                            {{ $c->qty }}
                                         </td>
                                         <td class="a-right movewishlist">
                                             <span class="cart-price">
@@ -107,10 +106,7 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        <ul class="checkout">
-                            <li>
-                                <button class="button btn-proceed-checkout" title="Proceed to Checkout" type="button"><span>Mua hàng ngay</span></button>
-                            </li>
+                                <a href="{{ route('order') }}">Mua hàng ngay</a>
                             <br>
                             <br>
                         </ul>

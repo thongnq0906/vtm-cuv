@@ -133,6 +133,8 @@ Route::group(['middleware' => 'adminLogin'], function() {
             Route::get('/anyData', 'Admin\LoginController@anyData')->name('anyData');
             Route::get('/create', 'Admin\LoginController@create')->name('admin.administrator.create');
             Route::post('/create', 'Admin\LoginController@postCreate')->name('admin.administrator.createPost');
+            Route::get('/update/{id}', 'Admin\LoginController@update')->name('admin.administrator.update');
+            Route::post('/update/{id}', 'Admin\LoginController@postUpdate')->name('admin.administrator.postUpdate');
             Route::get('/destroy/{id}', 'Admin\LoginController@destroy')->name('admin.administrator.destroy');
         });
         Route::get('setting', 'Admin\SettingController@index')->name('admin.setting');

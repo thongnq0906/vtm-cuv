@@ -29,7 +29,6 @@
                         <ul>
                             <li id="billing-new-address-form">
                                 <fieldset>
-                                    <legend>New Address</legend>
                                     <input type="hidden" name="billing[address_id]" value="" id="billing:address_id">
                                     <ul>
                                         <li>
@@ -92,17 +91,19 @@
                                 <label class="control-label">Chọn phương thức thanh toán</label>
                                 <select class="form-control" name="payment">
                                     {{-- @foreach($payment as $p) --}}
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                                    <option value="1">Ship</option>
+                                    <option value="2">Online</option>
                                     {{-- @endforeach --}}
 
                                 </select>
                             </div>
                             <div class="buttons-set">
-                                <button type="submit" title="Submit" class="button submit"> <span> Submit </span> </button>
+                                <button type="submit" title="Submit" class="button submit"> <span>Mua ngay</span> </button>
                             </div>
                         </ul>
                         </form>
+                        <br>
+                        <br>
                     </fieldset>
                 </div>
             </section>
